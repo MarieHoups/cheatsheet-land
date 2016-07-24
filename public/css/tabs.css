@@ -1,0 +1,56 @@
+body {
+  min-height: 100vh;
+  font-size: 12px; }
+
+.wrapper {
+  padding: 2em; }
+
+/* tabs */
+.cheat {
+  background: #111;
+  border: dashed #eee 2px;
+  border-radius: .5em;
+  box-shadow: 0 0 0 1em;
+  margin: auto;
+  max-width: 40em;
+  position: relative;
+  cursor: pointer; }
+  .cheat::after {
+    content: '';
+    display: block;
+    width: 3em;
+    height: 4em;
+    border-radius: 0 1em 1em 0;
+    background: inherit;
+    position: absolute;
+    top: 0;
+    right: -3.1em; }
+
+table {
+  margin: 2em auto;
+  color: white;
+  font-family: monaco;
+  border-collapse: collapse;
+  text-align: center; }
+
+td {
+  border: 1px solid #eee;
+  padding: 1em; }
+
+section:nth-of-type(2) {
+  background: indianred;
+  box-shadow: 0 0 0 1em indianred;
+  top: -13em; }
+  section:nth-of-type(2)::after {
+    top: 4em; }
+
+section:nth-of-type(3) {
+  background: coral;
+  box-shadow: 0 0 0 1em coral;
+  position: relative;
+  top: -26em; }
+  section:nth-of-type(3)::after {
+    top: 8em; }
+
+.stack {
+  z-index: 1; }
