@@ -31,35 +31,24 @@ var ColorTable = React.createClass({
     };
   },
   componentDidMount: function() {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      cache: true,
-      beforeSend: function() {
-        this.setState({loading: true});
-      }.bind(this),
-      complete: function() {
-        this.setState({loading: false});
-      }.bind(this),
-      success: function(data) {
+    axios.get(this.props.url)
+      .then(function(response) {
         var sortable = [];
-        for (let obj in data) {
+        for (let color in response.data) {
 
           sortable.push({
-            name: obj,
-            hex: data[obj],
-            h: Math.round(tinycolor(obj).toHsl().h),
-            s: Math.round(100 * tinycolor(obj).toHsl().s),
-            l: Math.round(100 * tinycolor(obj).toHsl().l)
+            name: color,
+            hex: response.data[color],
+            h: Math.round(tinycolor(color).toHsl().h),
+            s: Math.round(100 * tinycolor(color).toHsl().s),
+            l: Math.round(100 * tinycolor(color).toHsl().l)
           });
         }
         var sortedByShade = _.orderBy(sortable, ["h", "s", "l"], ['asc', 'asc', 'asc']);
-
         this.setState({data: sortedByShade});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.state.url, status, err.toString());
-      }.bind(this)
+      }.bind(this))
+      .catch(function(error) {
+        console.warn('Error', error.message);
     });
   },
   eachColor: function(color,i) {
