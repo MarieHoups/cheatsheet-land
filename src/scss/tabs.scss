@@ -44,7 +44,7 @@ td {
   padding: 1em;
 }
 section:nth-of-type(2) {
-  background: indianred;
+  //background: indianred;
   box-shadow: 0 0 0 1em indianred;
   top: -13em;
   &::after {
@@ -52,7 +52,7 @@ section:nth-of-type(2) {
   }
 }
 section:nth-of-type(3) {
-  background: $color-sketch;
+  //background: $color-sketch;
   box-shadow: 0 0 0 1em coral;
   position: relative;
   top: -26em;
@@ -61,6 +61,9 @@ section:nth-of-type(3) {
   }
 }
 
-.stack {
+.stack-1 {
   z-index: 1;
+}
+.stack-0 {
+  z-index: 0;
 }

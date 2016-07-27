@@ -9,36 +9,9 @@ html
       meta(http-equiv='X-UA-Compatible' content='IE=edge')
       meta(name='viewport' content='width=device-width, initial-scale=1')
    body
-    .wrapper
-      section.cheat.stack
-        table
-          caption iTerm
-          tr
-            th keys
-            th what for
-          tr
-            td shift + &#8984 + D
-            td blah split
-          tr
-            td shift;
-            td blah
-      section.cheat
-        table
-          caption Sketch
-          tr
-            td &#8984 + shift + O
-            td blah outlines
-          tr
-            td &#8984;
-            td blah
-       section.cheat
-        table
-          caption Need a third
-          tr
-            td &#8984;
-            td blah
-          tr
-            td &#8984;
-            td blah
-    script(src="../../bower_components/jquery/dist/jquery.min.js")
-    script(src="../js/notebook.js")
+    #wrapper
+    script(src="../../bower_components/lodash/dist/lodash.min.js")
+    script(src="../../bower_components/react/react.min.js")
+    script(src="../../bower_components/react/react-dom.min.js")
+    script(src="../../bower_components/babel/browser.min.js")
+    script(type="text/babel" src="../js/notebook.js")

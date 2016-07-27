@@ -10,52 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <div class="wrapper">
-      <section class="cheat stack">
-        <table>
-          <caption>iTerm</caption>
-          <tr>
-            <th>keys</th>
-            <th>what for</th>
-          </tr>
-          <tr>
-            <td>shift + &#8984 + D</td>
-            <td>blah split</td>
-          </tr>
-          <tr>
-            <td>shift;</td>
-            <td>blah</td>
-          </tr>
-        </table>
-      </section>
-      <section class="cheat">
-        <table>
-          <caption>Sketch</caption>
-          <tr>
-            <td>&#8984 + shift + O</td>
-            <td>blah outlines</td>
-          </tr>
-          <tr>
-            <td>&#8984;</td>
-            <td>blah</td>
-          </tr>
-        </table>
-      </section>
-      <section class="cheat">
-        <table>
-          <caption>Need a third</caption>
-          <tr>
-            <td>&#8984;</td>
-            <td>blah</td>
-          </tr>
-          <tr>
-            <td>&#8984;</td>
-            <td>blah</td>
-          </tr>
-        </table>
-      </section>
-    </div>
-    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../js/notebook.js"></script>
+    <div id="wrapper"></div>
+    <script src="../../bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="../../bower_components/react/react.min.js"></script>
+    <script src="../../bower_components/react/react-dom.min.js"></script>
+    <script src="../../bower_components/babel/browser.min.js"></script>
+    <script type="text/babel" src="../js/notebook.js"></script>
   </body>
 </html>
