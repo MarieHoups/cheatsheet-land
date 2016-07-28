@@ -16,17 +16,21 @@
     "babel-register": "^6.11.6",
     "babelify": "^7.3.0",
     "browserify": "^13.1.0",
+    "chai": "^3.5.0",
+    "enzyme": "^2.4.1",
     "exorcist": "^0.4.0",
     "gulp": "^3.9.1",
     "gulp-connect": "^4.2.0",
     "gulp-jade": "^1.1.0",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
+    "jsdom": "^9.4.1",
+    "react-addons-test-utils": "^15.2.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/setup.js test/**/*.spec.js"
   },
   "keywords": [],
   "author": "",

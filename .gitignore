@@ -3,3 +3,4 @@ node_modules
 public/bower_components
 public/bundle.js
 public/bundle.js.map
+test.log
