@@ -4,7 +4,6 @@ Router = require('react-router'),
 
 var Layout = React.createClass({
   render: function() {
-    console.log(this.props);
     return (
       <div>
         <ul>
@@ -12,7 +11,10 @@ var Layout = React.createClass({
             <Link to="/color-table">Color Table</Link>
           </li>
           <li>
-            <Link to="/shortcuts">Shortcuts</Link>
+            <Link to="/notebook">Shortcuts</Link>
+          </li>
+          <li>
+            <Link to="/playground">Playground</Link>
           </li>
         </ul>
         <div>
