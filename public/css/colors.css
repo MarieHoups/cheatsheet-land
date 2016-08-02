@@ -6,7 +6,7 @@ td {
   font-family: Monaco;
   padding: 1em; }
 
-input {
+input[type=text] {
   font-size: inherit;
   width: 15em;
   padding: 1em;

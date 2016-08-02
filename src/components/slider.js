@@ -13,7 +13,6 @@ var Slider = React.createClass({
   render: function() {
     return (
       <div>
-      <form>
         <input
           type="range"
           value={this.state.currentValue}
@@ -23,7 +22,6 @@ var Slider = React.createClass({
           ref="rangeInput"
           onChange={this.handleChange}
         />
-      </form>
       </div>
     );
   }

@@ -37,12 +37,8 @@ var Playground = React.createClass({
   },
   render: function() {
     return (
-      <div>
-        <Shape
-          shapeStyle={this.state.baseShape}/>
-          <pre>
-          box-shadow: {this.state.baseShape.boxShadow}
-          </pre>
+      <div className="playground">
+      <section className="sliders">
         <Slider
           min="0"
           max="20"
@@ -81,6 +77,17 @@ var Playground = React.createClass({
           step="0.1"
           onUserInput={this.handleUserInput.bind(this, "spread")}
         />
+      </section>
+      <section className="shape">
+        <Shape
+          shapeStyle={this.state.baseShape}/>
+
+      </section>
+      <section className="code">
+        <code>
+          box-shadow: {this.state.baseShape.boxShadow}
+        </code>
+      </section>
       </div>
     );
   }

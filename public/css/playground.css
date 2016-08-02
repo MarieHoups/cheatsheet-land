@@ -1,0 +1,23 @@
+.playground {
+  display: flex;
+  height: 100vh; }
+
+section {
+  padding: 1em; }
+
+.shape {
+  width: 50%;
+  padding: 3em;
+  z-index: -1; }
+
+.sliders {
+  background: #333;
+  text-align: center;
+  width: 25%; }
+  .sliders div {
+    padding: 1em; }
+
+.code {
+  background: #ccc;
+  width: 25%;
+  word-wrap: wrap; }
