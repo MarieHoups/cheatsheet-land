@@ -12,12 +12,24 @@ section {
 
 .sliders {
   background: #333;
-  text-align: center;
-  width: 25%; }
-  .sliders div {
+  width: 25%;
+  font-family: roboto;
+  font-weight: 100; }
+  .sliders label {
     padding: 1em; }
 
 .code {
-  background: #ccc;
+  background: #e4dcef;
   width: 25%;
   word-wrap: wrap; }
+
+fieldset {
+  border: none; }
+  fieldset legend {
+    color: #e4dcef;
+    font-size: 14px; }
+
+.lbl-range {
+  display: block;
+  color: #f53373;
+  font-size: 12px; }

@@ -6,13 +6,13 @@ var Slider = React.createClass({
       currentValue: this.props.initialValue || 0
     };
   },
-  handleChange: function(e) {
+  handleChange: function() {
     this.props.onUserInput(this.refs.rangeInput.value);
     this.setState({currentValue: this.refs.rangeInput.value})
   },
   render: function() {
     return (
-      <div>
+      <label className="lbl-range"> {this.props.name}
         <input
           type="range"
           value={this.state.currentValue}
@@ -22,7 +22,7 @@ var Slider = React.createClass({
           ref="rangeInput"
           onChange={this.handleChange}
         />
-      </div>
+      </label>
     );
   }
 });

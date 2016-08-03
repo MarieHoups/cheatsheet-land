@@ -6,9 +6,10 @@ var Playground = React.createClass({
   getInitialState: function() {
     return {
       baseShape: {
-        background: 'deeppink',
+        background: '#f53373',
         width: '10em',
-        height: '10em'
+        height: '10em',
+        boxShadow: '0 0 0 0'
       },
       bShadow: { x: 0, y: 0, blur: 0, spread: 0 }
     };
@@ -39,7 +40,10 @@ var Playground = React.createClass({
     return (
       <div className="playground">
       <section className="sliders">
+        <fieldset>
+    <legend>Size</legend>
         <Slider
+          name="height"
           min="0"
           max="20"
           step="0.1"
@@ -47,36 +51,45 @@ var Playground = React.createClass({
           onUserInput={this.handleUserInput.bind(this, "height")}
         />
         <Slider
+          name="width"
           min="0"
           max="20"
           step="0.1"
           initialValue={this.state.baseShape.width}
           onUserInput={this.handleUserInput.bind(this, "width")}
         />
+        </fieldset>
+          <fieldset>
+    <legend>Box-shadow</legend>
         <Slider
+          name="x-offset"
           min="-20"
           max="30"
           step="0.1"
           onUserInput={this.handleUserInput.bind(this, "x")}
         />
         <Slider
+          name="y-offset"
           min="-20"
           max="30"
           step="0.1"
           onUserInput={this.handleUserInput.bind(this, "y")}
         />
         <Slider
+          name="blur"
           min="0"
           max="10"
           step="0.1"
           onUserInput={this.handleUserInput.bind(this, "blur")}
         />
         <Slider
+          name="spread"
           min="-20"
           max="30"
           step="0.1"
           onUserInput={this.handleUserInput.bind(this, "spread")}
         />
+        </fieldset>
       </section>
       <section className="shape">
         <Shape
@@ -84,9 +97,15 @@ var Playground = React.createClass({
 
       </section>
       <section className="code">
+      <pre>
         <code>
+          height: {this.state.baseShape.height}
+          {'\n'}
+          width: {this.state.baseShape.width}
+          {'\n'}
           box-shadow: {this.state.baseShape.boxShadow}
         </code>
+        </pre>
       </section>
       </div>
     );

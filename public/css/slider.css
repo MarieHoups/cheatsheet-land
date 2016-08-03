@@ -1,7 +1,9 @@
 input[type=range] {
   -webkit-appearance: none;
-  width: 100%;
-  background-color: transparent; }
+  background-color: transparent;
+  margin-top: .5em;
+  width: 18em;
+  float: right; }
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -18,4 +20,4 @@ input[type=range]::-webkit-slider-runnable-track {
   height: .5em;
   background: #000;
   border-radius: 2em;
-  width: 15em; }
+  width: 20em; }

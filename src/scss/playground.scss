@@ -1,6 +1,6 @@
 .playground {
   display: flex;
-    height: 100vh;
+  height: 100vh;
 }
 
 section {
@@ -15,15 +15,30 @@ section {
 
 .sliders {
   background:#333;
-  text-align: center;
   width: 25%;
-  div {
+  font-family: roboto;
+  font-weight: 100;
+  label {
     padding: 1em;
   }
 }
 
 .code {
-  background:#ccc;
+  background:#e4dcef;
   width: 25%;
   word-wrap: wrap;
+}
+
+fieldset {
+  border: none;
+  legend {
+    color: #e4dcef;
+    font-size: 14px;
+  }
+}
+
+.lbl-range {
+  display: block;
+  color: #f53373;
+  font-size: 12px;
 }
