@@ -1,6 +1,7 @@
 var React = require('react');
 var Slider = require('./slider'),
-    Shape = require('./shape');
+    Shape = require('./shape'),
+    ColorInput = require('./colorInput');
 
 var Playground = React.createClass({
   getInitialState: function() {
@@ -31,9 +32,13 @@ var Playground = React.createClass({
 
     } else {
       style = this.state.baseShape;
-      style[property] = value + 'em';
-    }
 
+      if (property === "background") {
+        style[property] = value;
+      } else {
+        style[property] = value + 'em';
+      }
+    }
     this.setState(style);
   },
   render: function() {
@@ -41,54 +46,62 @@ var Playground = React.createClass({
       <div className="playground">
       <section className="sliders">
         <fieldset>
-    <legend>Size</legend>
-        <Slider
-          name="height"
-          min="0"
-          max="20"
-          step="0.1"
-          initialValue={this.state.baseShape.height}
-          onUserInput={this.handleUserInput.bind(this, "height")}
-        />
-        <Slider
-          name="width"
-          min="0"
-          max="20"
-          step="0.1"
-          initialValue={this.state.baseShape.width}
-          onUserInput={this.handleUserInput.bind(this, "width")}
-        />
+          <legend>Size</legend>
+          <Slider
+            name="height"
+            min="0"
+            max="20"
+            step="0.1"
+            initialValue={this.state.baseShape.height}
+            onUserInput={this.handleUserInput.bind(this, "height")}
+          />
+          <Slider
+            name="width"
+            min="0"
+            max="20"
+            step="0.1"
+            initialValue={this.state.baseShape.width}
+            onUserInput={this.handleUserInput.bind(this, "width")}
+          />
         </fieldset>
-          <fieldset>
-    <legend>Box-shadow</legend>
-        <Slider
-          name="x-offset"
-          min="-20"
-          max="30"
-          step="0.1"
-          onUserInput={this.handleUserInput.bind(this, "x")}
-        />
-        <Slider
-          name="y-offset"
-          min="-20"
-          max="30"
-          step="0.1"
-          onUserInput={this.handleUserInput.bind(this, "y")}
-        />
-        <Slider
-          name="blur"
-          min="0"
-          max="10"
-          step="0.1"
-          onUserInput={this.handleUserInput.bind(this, "blur")}
-        />
-        <Slider
-          name="spread"
-          min="-20"
-          max="30"
-          step="0.1"
-          onUserInput={this.handleUserInput.bind(this, "spread")}
-        />
+        <fieldset>
+          <legend>Box-shadow</legend>
+          <Slider
+            name="x-offset"
+            min="-20"
+            max="30"
+            step="0.1"
+            onUserInput={this.handleUserInput.bind(this, "x")}
+          />
+          <Slider
+            name="y-offset"
+            min="-20"
+            max="30"
+            step="0.1"
+            onUserInput={this.handleUserInput.bind(this, "y")}
+          />
+          <Slider
+            name="blur"
+            min="0"
+            max="10"
+            step="0.1"
+            onUserInput={this.handleUserInput.bind(this, "blur")}
+          />
+          <Slider
+            name="spread"
+            min="-20"
+            max="30"
+            step="0.1"
+            onUserInput={this.handleUserInput.bind(this, "spread")}
+          />
+        </fieldset>
+        <fieldset>
+          <legend>Color</legend>
+          <ColorInput
+            name="background"
+            color={this.state.baseShape.background}
+            onUserInput={this.handleUserInput.bind(this, "background")}
+          />
         </fieldset>
       </section>
       <section className="shape">
@@ -99,6 +112,8 @@ var Playground = React.createClass({
       <section className="code">
       <pre>
         <code>
+          background: {this.state.baseShape.background}
+          {'\n'}
           height: {this.state.baseShape.height}
           {'\n'}
           width: {this.state.baseShape.width}

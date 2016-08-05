@@ -8,6 +8,7 @@ var SearchInput = React.createClass({
     return (
       <form>
         <input
+          className="search"
           type="text"
           placeholder="Search by name..."
           value={this.props.filterText}

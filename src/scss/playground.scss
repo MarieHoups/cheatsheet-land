@@ -37,8 +37,12 @@ fieldset {
   }
 }
 
-.lbl-range {
+.lbl-range, .lbl-hex {
   display: block;
   color: #f53373;
   font-size: 12px;
+}
+
+.lbl-hex input {
+  float: right;
 }
