@@ -3,7 +3,7 @@ var React = require('react');
 var ColorInput = React.createClass({
   getInitialState: function() {
     return {
-      color: this.props.color
+      color: this.props.color || '#000'
     };
   },
   handleChange: function() {

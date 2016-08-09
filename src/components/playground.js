@@ -12,16 +12,16 @@ var Playground = React.createClass({
         height: '10em',
         boxShadow: '0 0 0 0'
       },
-      bShadow: { x: 0, y: 0, blur: 0, spread: 0 }
+      bShadow: { x: 0, y: 0, blur: 0, spread: 0, colorShadow: '' }
     };
   },
   handleUserInput: function(property, value) {
     var style;
-
-    if (property === "x" || property === "y" || property === "blur" || property === "spread") {
+    var multProps = ["x","y","blur","spread", "colorShadow"];
+    if (_.indexOf(multProps, property) >= 0) {
       var concatable = [];
       style = this.state.bShadow;
-      style[property] = value + 'em';
+      style[property] = value == 0 || value.match(/^[^-\d]./) ? value : value + 'em';
       for (var p in style) {
         concatable.push(style[p] );
       }
@@ -42,6 +42,7 @@ var Playground = React.createClass({
     this.setState(style);
   },
   render: function() {
+    var shape = this.state.baseShape;
     return (
       <div className="playground">
       <section className="sliders">
@@ -96,11 +97,46 @@ var Playground = React.createClass({
           />
         </fieldset>
         <fieldset>
+          <legend>Border-radius</legend>
+          <Slider
+            name="top-left"
+            min="0"
+            max="50"
+            step="0.1"
+            onUserInput={this.handleUserInput.bind(this, "borderTopLeftRadius")}
+          />
+          <Slider
+            name="top-right"
+            min="0"
+            max="50"
+            step="0.1"
+            onUserInput={this.handleUserInput.bind(this, "borderTopRightRadius")}
+          />
+                    <Slider
+            name="bottom-right"
+            min="0"
+            max="50"
+            step="0.1"
+            onUserInput={this.handleUserInput.bind(this, "borderBottomRightRadius")}
+          />
+          <Slider
+            name="bottom-left"
+            min="0"
+            max="50"
+            step="0.1"
+            onUserInput={this.handleUserInput.bind(this, "borderBottomLeftRadius")}
+          />
+          </fieldset>
+        <fieldset>
           <legend>Color</legend>
           <ColorInput
             name="background"
             color={this.state.baseShape.background}
             onUserInput={this.handleUserInput.bind(this, "background")}
+          />
+          <ColorInput
+            name="color-shadow"
+            onUserInput={this.handleUserInput.bind(this, "colorShadow")}
           />
         </fieldset>
       </section>
@@ -112,13 +148,16 @@ var Playground = React.createClass({
       <section className="code">
       <pre>
         <code>
-          background: {this.state.baseShape.background}
+          background: {shape.background}
           {'\n'}
-          height: {this.state.baseShape.height}
+          height: {shape.height}
           {'\n'}
-          width: {this.state.baseShape.width}
+          width: {shape.width}
           {'\n'}
-          box-shadow: {this.state.baseShape.boxShadow}
+          box-shadow: {this.state.boxShadow}
+          {'\n'}
+          border-radius: {
+            `${shape.borderTopLeftRadius || 0} ${shape.borderTopRightRadius || 0} ${shape.borderBottomLeftRadius || 0} ${shape.borderBottomRightRadius || 0}`}
         </code>
         </pre>
       </section>
