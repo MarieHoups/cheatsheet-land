@@ -1,0 +1,38 @@
+.playground {
+  display: flex;
+  height: 100vh; }
+
+section {
+  padding: 1em; }
+
+.shape {
+  width: 50%;
+  padding: 3em;
+  z-index: -1; }
+
+.sliders {
+  background: #333;
+  width: 25%;
+  font-family: roboto;
+  font-weight: 100; }
+  .sliders label {
+    padding: 1em; }
+
+.code {
+  background: #e4dcef;
+  width: 25%;
+  word-wrap: wrap; }
+
+fieldset {
+  border: none; }
+  fieldset legend {
+    color: #e4dcef;
+    font-size: 14px; }
+
+.lbl-range, .lbl-hex {
+  display: block;
+  color: #f53373;
+  font-size: 12px; }
+
+.lbl-hex input {
+  float: right; }
