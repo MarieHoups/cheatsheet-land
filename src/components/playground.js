@@ -1,11 +1,12 @@
-var React = require('react');
-var Slider = require('./slider'),
-    Shape = require('./shape'),
-    ColorInput = require('./colorInput');
+import React from 'react';
+import Slider from './slider';
+import Shape from './shape';
+import ColorInput from './colorInput';
 
-var Playground = React.createClass({
-  getInitialState: function() {
-    return {
+class Playground extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       baseShape: {
         background: '#f53373',
         width: '10em',
@@ -14,8 +15,9 @@ var Playground = React.createClass({
       },
       bShadow: { x: 0, y: 0, blur: 0, spread: 0, colorShadow: '' }
     };
-  },
-  handleUserInput: function(property, value) {
+  }
+
+  handleUserInput(property, value) {
     var style;
     var multProps = ["x","y","blur","spread", "colorShadow"];
     if (_.indexOf(multProps, property) >= 0) {
@@ -40,8 +42,9 @@ var Playground = React.createClass({
       }
     }
     this.setState(style);
-  },
-  render: function() {
+  }
+
+  render() {
     var shape = this.state.baseShape;
     return (
       <div className="playground">
@@ -53,7 +56,7 @@ var Playground = React.createClass({
             min="0"
             max="20"
             step="0.1"
-            initialValue={this.state.baseShape.height}
+            defaultValue={this.state.baseShape.height}
             onUserInput={this.handleUserInput.bind(this, "height")}
           />
           <Slider
@@ -61,7 +64,7 @@ var Playground = React.createClass({
             min="0"
             max="20"
             step="0.1"
-            initialValue={this.state.baseShape.width}
+            defaultValue={this.state.baseShape.width}
             onUserInput={this.handleUserInput.bind(this, "width")}
           />
         </fieldset>
@@ -112,7 +115,7 @@ var Playground = React.createClass({
             step="0.1"
             onUserInput={this.handleUserInput.bind(this, "borderTopRightRadius")}
           />
-                    <Slider
+          <Slider
             name="bottom-right"
             min="0"
             max="50"
@@ -131,7 +134,7 @@ var Playground = React.createClass({
           <legend>Color</legend>
           <ColorInput
             name="background"
-            color={this.state.baseShape.background}
+            defaultValue={this.state.baseShape.background}
             onUserInput={this.handleUserInput.bind(this, "background")}
           />
           <ColorInput
@@ -141,9 +144,7 @@ var Playground = React.createClass({
         </fieldset>
       </section>
       <section className="shape">
-        <Shape
-          shapeStyle={this.state.baseShape}/>
-
+        <Shape shapeStyle={this.state.baseShape}/>
       </section>
       <section className="code">
       <pre>
@@ -164,6 +165,6 @@ var Playground = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = Playground;
+export default Playground;

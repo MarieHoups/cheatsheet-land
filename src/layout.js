@@ -1,9 +1,8 @@
-var React = require('react'),
-Router = require('react-router'),
-    Link = Router.Link;
+import React from 'react';
+import { Link } from 'react-router';
 
-var Layout = React.createClass({
-  render: function() {
+class Layout extends React.Component{
+  render() {
     return (
       <div>
         <ul>
@@ -23,6 +22,6 @@ var Layout = React.createClass({
       </div>
     );
   }
-})
+}
 
-module.exports = Layout;
+export default Layout;

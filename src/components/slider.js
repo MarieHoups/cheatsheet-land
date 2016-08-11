@@ -1,30 +1,30 @@
-var React = require('react');
+import React from 'react';
 
-var Slider = React.createClass({
-  getInitialState: function() {
-    return {
-      currentValue: this.props.initialValue || 0
-    };
-  },
-  handleChange: function() {
+class Slider extends React.Component{
+  _handleChange() {
     this.props.onUserInput(this.refs.rangeInput.value);
     this.setState({currentValue: this.refs.rangeInput.value})
-  },
-  render: function() {
+  }
+
+  render() {
     return (
       <label className="lbl-range"> {this.props.name}
         <input
           type="range"
-          value={this.state.currentValue}
+          defaultValue={this.props.defaultValue}
           min={this.props.min}
           max={this.props.max}
           step={this.props.step}
           ref="rangeInput"
-          onChange={this.handleChange}
+          onChange={this._handleChange.bind(this)}
         />
       </label>
     );
   }
-});
+}
 
-module.exports = Slider;
+Slider.defaultProps = {
+  defaultValue: 0
+};
+
+export default Slider;

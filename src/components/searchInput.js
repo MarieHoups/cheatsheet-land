@@ -1,10 +1,11 @@
-var React = require('react');
+import React from 'react';
 
-var SearchInput = React.createClass({
-    handleChange: function() {
+class SearchInput extends React.Component{
+  _handleChange() {
     this.props.onUserInput(this.refs.filterTextInput.value);
-    },
-  render: function() {
+  }
+
+  render() {
     return (
       <form>
         <input
@@ -13,11 +14,11 @@ var SearchInput = React.createClass({
           placeholder="Search by name..."
           value={this.props.filterText}
           ref="filterTextInput"
-          onChange={this.handleChange}
+          onChange={this._handleChange.bind(this)}
         />
         </form>
     );
   }
-});
+}
 
-module.exports = SearchInput;
+export default SearchInput;

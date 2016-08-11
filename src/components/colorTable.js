@@ -1,14 +1,16 @@
-var React = require('react');
-var ColorRow = require('./ColorRow');
+import React from 'react';
+import ColorRow from './ColorRow';
 
-var ColorTable = React.createClass({
-  getInitialState: function() {
-    return {
+class ColorTable extends React.Component{
+  constructor() {
+    super();
+    this.state = {
       data: [],
       loading: false
     };
-  },
-  componentDidMount: function() {
+  }
+
+  componentDidMount() {
     axios.get(this.props.url)
       .then(function(response) {
         var sortable = [];
@@ -25,27 +27,29 @@ var ColorTable = React.createClass({
         var sortedByShade = _.orderBy(sortable, ["h", "s", "l"], ['asc', 'asc', 'asc']);
         this.setState({data: sortedByShade});
       }.bind(this))
-      .catch(function(error) {
-        console.warn('Error', error.message);
-    });
-  },
-  eachColor: function(color,i) {
-    if (color.name.indexOf(this.props.filterText) === -1) return;
-   return (
+    //   .catch(function(error) {
+    //     console.warn('Error', error.message);
+    // });
+  }
+
+  eachColor(color,i) {
+  if (color.name.indexOf(this.props.filterText) === -1) return;
+  return (
     <ColorRow key={color.name} index={i}>
        {color}
      </ColorRow>
    );
-  },
-  render: function() {
+  }
+
+  render() {
     return (
       <table>
         <tbody>
-        {this.state.data.map(this.eachColor)}
+        {this.state.data.map(this.eachColor.bind(this))}
         </tbody>
       </table>
     );
   }
-});
+}
 
-module.exports = ColorTable;
+export default ColorTable;

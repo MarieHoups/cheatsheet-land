@@ -1,17 +1,13 @@
-var React = require('React');
-var ReactRouter = require('react-router');
-var Router = ReactRouter.Router;
-var Route = ReactRouter.Route;
-var IndexRoute = ReactRouter.IndexRoute;
-var hashHistory = ReactRouter.hashHistory;
+import React from 'react';
+import { Router, Route, hashHistory } from 'react-router';
 
-var Layout = require('./layout');
+import Layout from './layout';
 
-var TableContainer = require('./components/tableContainer');
-var Notebook = require('./components/notebook');
-var Playground = require('./components/playground');
+import TableContainer from './components/tableContainer';
+import Notebook from './components/notebook';
+import Playground from './components/playground';
 
-var routes = (
+const routes = (
   <Router history={hashHistory}>
     <Route path='/' component={Layout}>
       <Route path='color-table' component={TableContainer} />
@@ -19,6 +15,6 @@ var routes = (
       <Route path='playground' component={Playground} />
     </Route>
   </Router>
-  );
+);
 
-module.exports = routes;
+export default routes;

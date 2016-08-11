@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var Shape = React.createClass({
-  render: function() {
+class Shape extends React.Component{
+  render() {
     return (
       <div>
       <aside></aside>
@@ -9,6 +9,6 @@ var Shape = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = Shape;
+export default Shape;

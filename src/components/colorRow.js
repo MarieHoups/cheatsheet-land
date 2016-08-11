@@ -1,13 +1,15 @@
-var React = require('react');
+import React from 'react';
 
-var ColorRow = React.createClass({
-  getInitialState: function() {
-    return {
-        color: setTextColor(this.props.children.l),
-        background: this.props.children.hex
+class ColorRow extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      color: setTextColor(this.props.children.l),
+      background: this.props.children.hex
     };
-  },
-  render: function() {
+  }
+
+  render() {
     var hsl = 'hsl(' + this.props.children.h + ', ' + this.props.children.s + '%, ' + this.props.children.l + '%)';
     return (
       <tr style={this.state}>
@@ -17,10 +19,10 @@ var ColorRow = React.createClass({
       </tr>
     );
   }
-});
+}
 
 function setTextColor(lightness) {
   return lightness > 45 ? "#333" : "#eee";
 }
 
-module.exports = ColorRow;
+export default ColorRow;

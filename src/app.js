@@ -1,6 +1,6 @@
-var React = require('react'),
-    ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-var routes = require('./routes');
+import routes from'./routes';
 
 ReactDOM.render( routes, document.getElementById('container'));

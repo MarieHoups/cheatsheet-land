@@ -1,25 +1,28 @@
-var React = require('react');
-var SearchInput = require('./SearchInput'),
-    ColorTable = require('./ColorTable');
+import React from 'react';
+import SearchInput from './SearchInput';
+import ColorTable from './ColorTable';
 
-var TableContainer = React.createClass({
-  getInitialState: function() {
-    return {
+class TableContainer extends React.Component{
+  constructor() {
+    super();
+    this.state = {
       filterText: ''
     };
-  },
+    this._handleUserInput = this._handleUserInput.bind(this);
+  }
 
-  handleUserInput: function(filterText) {
+  _handleUserInput(filterText) {
     this.setState({
       filterText: filterText
     });
-  },
-  render: function() {
+  }
+
+  render() {
     return (
       <div>
         <SearchInput
           filterText={this.state.filterText}
-          onUserInput={this.handleUserInput}
+          onUserInput={this._handleUserInput}
         />
         <ColorTable
           url="https://raw.githubusercontent.com/bahamas10/css-color-names/master/css-color-names.json"
@@ -28,6 +31,6 @@ var TableContainer = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = TableContainer;
+export default TableContainer;

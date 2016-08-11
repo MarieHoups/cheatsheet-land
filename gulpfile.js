@@ -1,11 +1,11 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var jade = require('gulp-jade');
-var babelify = require('babelify'),
-    source = require('vinyl-source-stream'),
-    buffer = require('vinyl-buffer'),
-    browserify = require('browserify'),
-    exorcist = require('exorcist');
+import gulp from 'gulp');
+import sass from 'gulp-sass');
+import jade from 'gulp-jade');
+import babelify from 'babelify');
+import source from 'vinyl-source-stream'),
+import buffer from 'vinyl-buffer'),
+import browserify from 'browserify'),
+import exorcist from 'exorcist');
 
 require('babel-core/register');
 gulp.task('sass', function() {

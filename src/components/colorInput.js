@@ -1,27 +1,27 @@
-var React = require('react');
+import React from 'react';
 
-var ColorInput = React.createClass({
-  getInitialState: function() {
-    return {
-      color: this.props.color || '#000'
-    };
-  },
-  handleChange: function() {
+class ColorInput extends React.Component{
+
+  _handleChange() {
     this.props.onUserInput(this.refs.colorInput.value);
-    this.setState({color: this.refs.colorInput.value})
-    },
-  render: function() {
+  }
+
+  render() {
     return (
       <label className="lbl-hex">{this.props.name}
         <input
           type="text"
-          value={this.state.color}
+          defaultValue={this.props.defaultValue}
           ref="colorInput"
-          onChange={this.handleChange}
+          onChange={this._handleChange.bind(this)}
         />
       </label>
     );
   }
-});
+}
 
-module.exports = ColorInput;
+ColorInput.defaultProps = {
+  defaultValue: ""
+};
+
+export default ColorInput;
