@@ -1,13 +1,12 @@
-import gulp from 'gulp');
-import sass from 'gulp-sass');
-import jade from 'gulp-jade');
-import babelify from 'babelify');
-import source from 'vinyl-source-stream'),
-import buffer from 'vinyl-buffer'),
-import browserify from 'browserify'),
-import exorcist from 'exorcist');
+import gulp from 'gulp';
+import sass from 'gulp-sass';
+import jade from 'gulp-jade';
+import babelify from 'babelify';
+import source from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
+import browserify from 'browserify';
+import exorcist from 'exorcist';
 
-require('babel-core/register');
 gulp.task('sass', function() {
   return gulp.src("./src/scss/*.scss")
     .pipe(sass())
