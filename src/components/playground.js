@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from './slider';
 import Shape from './shape';
 import ColorInput from './colorInput';
+import Fieldset from './fieldset';
 
 class Playground extends React.Component {
   constructor(props) {
@@ -49,8 +50,7 @@ class Playground extends React.Component {
     return (
       <div className="playground">
       <section className="sliders">
-        <fieldset>
-          <legend>Size</legend>
+        <Fieldset name="Size">
           <Slider
             name="height"
             min="0"
@@ -67,9 +67,8 @@ class Playground extends React.Component {
             defaultValue={this.state.baseShape.width}
             onUserInput={this.handleUserInput.bind(this, "width")}
           />
-        </fieldset>
-        <fieldset>
-          <legend>Box-shadow</legend>
+        </Fieldset>
+        <Fieldset name="Box-shadow">
           <Slider
             name="x-offset"
             min="-20"
@@ -98,9 +97,8 @@ class Playground extends React.Component {
             step="0.1"
             onUserInput={this.handleUserInput.bind(this, "spread")}
           />
-        </fieldset>
-        <fieldset>
-          <legend>Border-radius</legend>
+        </Fieldset>
+        <Fieldset name="Border-radius">
           <Slider
             name="top-left"
             min="0"
@@ -129,9 +127,8 @@ class Playground extends React.Component {
             step="0.1"
             onUserInput={this.handleUserInput.bind(this, "borderBottomLeftRadius")}
           />
-          </fieldset>
-        <fieldset>
-          <legend>Color</legend>
+        </Fieldset>
+        <Fieldset name="Color">
           <ColorInput
             name="background"
             defaultValue={this.state.baseShape.background}
@@ -141,7 +138,7 @@ class Playground extends React.Component {
             name="color-shadow"
             onUserInput={this.handleUserInput.bind(this, "colorShadow")}
           />
-        </fieldset>
+        </Fieldset>
       </section>
       <section className="shape">
         <Shape shapeStyle={this.state.baseShape}/>
