@@ -10,7 +10,7 @@ class ColorRow extends React.Component{
   }
 
   render() {
-    var hsl = 'hsl(' + this.props.children.h + ', ' + this.props.children.s + '%, ' + this.props.children.l + '%)';
+    const hsl = 'hsl(' + this.props.children.h + ', ' + this.props.children.s + '%, ' + this.props.children.l + '%)';
     return (
       <tr style={this.state}>
         <td>{this.props.children.name}</td>

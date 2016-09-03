@@ -27,13 +27,13 @@ class ColorTable extends React.Component{
         var sortedByShade = _.orderBy(sortable, ["h", "s", "l"], ['asc', 'asc', 'asc']);
         this.setState({data: sortedByShade});
       }.bind(this))
-    //   .catch(function(error) {
-    //     console.warn('Error', error.message);
-    // });
+      .catch(function(error) {
+        console.warn('Error', error.message);
+    });
   }
 
   eachColor(color,i) {
-  if (color.name.indexOf(this.props.filterText) === -1) return;
+  if (!color.name.includes(this.props.filterText)) return;
   return (
     <ColorRow key={color.name} index={i}>
        {color}

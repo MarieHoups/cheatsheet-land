@@ -18,17 +18,17 @@ class Playground extends React.Component {
   }
 
   handleUserInput(property, value) {
-    var style;
-    var multProps = ["x","y","blur","spread", "colorShadow"];
-    if (_.indexOf(multProps, property) >= 0) {
-      var concatable = [];
+    let style;
+    const multProps = ["x","y","blur","spread", "colorShadow"];
+    if (multProps.includes(property)) {
+      let concatable = [];
       style = this.state.bShadow;
       style[property] = value == 0 || value.match(/^[^-\d]./) ? value : value + 'em';
-      for (var p in style) {
+      for (let p in style) {
         concatable.push(style[p] );
       }
 
-      var newstyle = this.state.baseShape;
+      let newstyle = this.state.baseShape;
       newstyle.boxShadow = concatable.join(' ');
       this.setState(newstyle);
 
@@ -45,7 +45,7 @@ class Playground extends React.Component {
   }
 
   render() {
-    var shape = this.state.baseShape;
+    const shape = this.state.baseShape;
     return (
       <div className="playground">
       <section className="sliders">
