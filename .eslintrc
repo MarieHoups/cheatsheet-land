@@ -1,0 +1,29 @@
+{
+  "plugins": [
+    "react"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "consistent-return": 2,
+    "eol-last": [0],
+    "no-extra-bind": 2,
+    "no-implicit-globals": 1,
+    "no-mixed-requires": [0],
+    no-redeclare: 2,
+    "no-underscore-dangle": [0],
+    "react/jsx-no-undef": 2,
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "no-unused-vars": 2,
+    "no-unreachable": 2
+  }
+}
