@@ -1,10 +1,18 @@
+$color-light: #e4dcef;
+$color-dark: #333;
+$color-main: #EC185D;
+
 .playground {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 section {
   padding: 1em;
+}
+
+hr {
+  border-color: #4f4842;
 }
 
 .shape {
@@ -13,36 +21,91 @@ section {
   z-index: -1;
 }
 
-.sliders {
-  background:#333;
+.controls {
+  background: $color-dark;
+  min-width: 21em;
   width: 25%;
   font-family: roboto;
-  font-weight: 100;
   label {
+    color: $color-light;
+    font-weight: 100;
     padding: 1em;
   }
 }
 
 .code {
-  background:#e4dcef;
+  background: $color-light;
   width: 25%;
   word-wrap: wrap;
 }
 
 fieldset {
   border: none;
+  margin-top: 1em;
   legend {
-    color: #e4dcef;
+    color: $color-main;
     font-size: 14px;
+    font-weight: 300;
   }
 }
 
-.lbl-range, .lbl-hex {
+.lbl-range, .lbl-color {
   display: block;
-  color: #f53373;
   font-size: 12px;
+  transition: all .5s;
 }
 
-.lbl-hex input {
-  float: right;
+.lbl-color {
+  margin-top: 1em;
+  input {
+    float: right;
+    transform: translateY(-1em);
+  }
+}
+
+.lbl-radio {
+  font-size: 0.8em;
+  margin: 1em 0;
+  [type=radio] {
+    padding: 0;
+    position: absolute;
+    clip: rect(0,0,0,0);
+    &:checked + span:after {
+      content: ' \2713';
+      color: $color-main;
+    }
+  }
+}
+
+[type=checkbox] {
+  position: absolute;
+  clip: rect(0,0,0,0);
+  &:checked ~ label:not(:first-of-type) {
+    transform: translateX(40%) scale(0);
+  }
+  &:checked ~ hr {
+    border: none;
+    margin: 0;
+  }
+  &:checked ~ label input,
+  &:checked ~ label:not(:first-of-type),
+  &:checked ~ .radio {
+    height: 0;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+  }
+  & ~ label:first-of-type:after {
+    content: '\25b2';
+  }
+  &:checked ~ label:first-of-type:after {
+    content: '...';
+  }
+  & + label {
+    display: block;
+    color: $color-light;
+    height: 0;
+    padding: 0;
+    transform: translate(17em, -1.5em);
+  }
 }

@@ -8,7 +8,7 @@ class ColorInput extends React.Component{
 
   render() {
     return (
-      <label className="lbl-hex">{this.props.name}
+      <label className="lbl-color">{this.props.name}
         <input
           type="text"
           defaultValue={this.props.defaultValue}

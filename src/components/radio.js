@@ -7,7 +7,7 @@ class Radio extends React.Component{
 
   render() {
     return (
-      <label className="radio">
+      <label className="lbl-radio">
         <input
           type="radio"
           name={this.props.name}

@@ -1,21 +1,26 @@
 .playground {
   display: flex;
-  height: 100vh; }
+  min-height: 100vh; }
 
 section {
   padding: 1em; }
+
+hr {
+  border-color: #4f4842; }
 
 .shape {
   width: 50%;
   padding: 3em;
   z-index: -1; }
 
-.sliders {
+.controls {
   background: #333;
+  min-width: 21em;
   width: 25%;
-  font-family: roboto;
-  font-weight: 100; }
-  .sliders label {
+  font-family: roboto; }
+  .controls label {
+    color: #e4dcef;
+    font-weight: 100;
     padding: 1em; }
 
 .code {
@@ -24,15 +29,57 @@ section {
   word-wrap: wrap; }
 
 fieldset {
-  border: none; }
+  border: none;
+  margin-top: 1em; }
   fieldset legend {
-    color: #e4dcef;
-    font-size: 14px; }
+    color: #EC185D;
+    font-size: 14px;
+    font-weight: 300; }
 
-.lbl-range, .lbl-hex {
+.lbl-range, .lbl-color {
   display: block;
-  color: #f53373;
-  font-size: 12px; }
+  font-size: 12px;
+  transition: all .5s; }
 
-.lbl-hex input {
-  float: right; }
+.lbl-color {
+  margin-top: 1em; }
+  .lbl-color input {
+    float: right;
+    transform: translateY(-1em); }
+
+.lbl-radio {
+  font-size: 0.8em;
+  margin: 1em 0; }
+  .lbl-radio [type=radio] {
+    padding: 0;
+    position: absolute;
+    clip: rect(0, 0, 0, 0); }
+    .lbl-radio [type=radio]:checked + span:after {
+      content: ' \2713';
+      color: #EC185D; }
+
+[type=checkbox] {
+  position: absolute;
+  clip: rect(0, 0, 0, 0); }
+  [type=checkbox]:checked ~ label:not(:first-of-type) {
+    transform: translateX(40%) scale(0); }
+  [type=checkbox]:checked ~ hr {
+    border: none;
+    margin: 0; }
+  [type=checkbox]:checked ~ label input,
+  [type=checkbox]:checked ~ label:not(:first-of-type),
+  [type=checkbox]:checked ~ .radio {
+    height: 0;
+    padding: 0;
+    margin: 0;
+    opacity: 0; }
+  [type=checkbox] ~ label:first-of-type:after {
+    content: '\25b2'; }
+  [type=checkbox]:checked ~ label:first-of-type:after {
+    content: '...'; }
+  [type=checkbox] + label {
+    display: block;
+    color: #e4dcef;
+    height: 0;
+    padding: 0;
+    transform: translate(17em, -1.5em); }

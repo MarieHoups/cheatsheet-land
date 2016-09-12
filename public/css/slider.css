@@ -2,22 +2,24 @@ input[type=range] {
   -webkit-appearance: none;
   background-color: transparent;
   margin-top: .5em;
-  width: 18em;
+  width: 15em;
   float: right; }
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  border: none;
-  height: 1em;
-  width: 1em;
+  border: solid 6px rgba(236, 24, 95, 0.4);
+  height: 1.5em;
+  width: 1.5em;
   border-radius: 50%;
-  background: #fff;
+  background: #EC185D;
+  background-clip: padding-box;
   cursor: pointer;
   position: relative;
-  top: -.3em; }
+  top: -.55em; }
 
 input[type=range]::-webkit-slider-runnable-track {
-  height: .5em;
-  background: #000;
+  height: 3px;
+  background: #5e5953;
   border-radius: 2em;
+  box-shadow: inset 1px 1px #111;
   width: 20em; }

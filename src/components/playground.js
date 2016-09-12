@@ -50,7 +50,7 @@ class Playground extends React.Component {
     const borderStyles = ["none", "solid", "double", "dashed", "dotted"];
     return (
       <div className="playground">
-      <section className="sliders">
+      <section className="controls">
         <Fieldset name="Size">
           <Slider
             name="height"
