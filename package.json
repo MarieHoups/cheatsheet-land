@@ -36,6 +36,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
+    "nyccover": "nyc --reporter=lcov --reporter=text --reporter=html --require babel-register npm test",
     "test": "mocha test/setup.js test/**/*.spec.js"
   },
   "keywords": [],

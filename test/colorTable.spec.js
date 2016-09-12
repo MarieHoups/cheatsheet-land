@@ -1,12 +1,13 @@
 
-var React = require('react'),
-    expect = require('chai').expect,
-    shallow = require('enzyme').shallow;
+import React from 'react';
+import { expect } from 'chai';
+import { mount, shallow } from 'enzyme';
 
-var ColorTable = require('../src/components/colorTable');
+import ColorTable from '../src/components/colorTable';
 
-describe("<ColorTable/>", function() {
+describe("<ColorTable />", function() {
   it("contains a table", function() {
-    expect(shallow(<ColorTable />).contains(<table><tbody></tbody></table>)).to.equal(true);
+    const wrapper = shallow(<ColorTable />);
+    expect(wrapper.contains(<table><tbody /></table>)).to.equal(true);
   });
 });
