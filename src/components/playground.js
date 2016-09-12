@@ -3,13 +3,14 @@ import Slider from './slider';
 import Shape from './shape';
 import ColorInput from './colorInput';
 import Fieldset from './fieldset';
+import Radio from './radio';
 
 class Playground extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       baseShape: {
-        background: '#f53373',
+        background: '#EC185D',
         width: '10em',
         height: '10em',
         boxShadow: '0 0 0 0'
@@ -35,8 +36,7 @@ class Playground extends React.Component {
 
     } else {
       style = this.state.baseShape;
-
-      if (property === "background") {
+      if (property === "background" || property === "borderColor" || property === "borderStyle") {
         style[property] = value;
       } else {
         style[property] = value + 'em';
@@ -47,6 +47,7 @@ class Playground extends React.Component {
 
   render() {
     const shape = this.state.baseShape;
+    const borderStyles = ["none", "solid", "double", "dashed", "dotted"];
     return (
       <div className="playground">
       <section className="sliders">
@@ -128,6 +129,45 @@ class Playground extends React.Component {
             onUserInput={this.handleUserInput.bind(this, "borderBottomLeftRadius")}
           />
         </Fieldset>
+        <Fieldset name="Border">
+          <Slider
+            name="top-width"
+            min="0"
+            max="20"
+            step="0.1"
+            onUserInput={this.handleUserInput.bind(this, "borderTopWidth")}
+          />
+          <Slider
+            name="right-width"
+            min="0"
+            max="20"
+            step="0.1"
+            onUserInput={this.handleUserInput.bind(this, "borderRightWidth")}
+          />
+          <Slider
+            name="bottom-width"
+            min="0"
+            max="20"
+            step="0.1"
+            onUserInput={this.handleUserInput.bind(this, "borderBottomWidth")}
+          />
+          <Slider
+            name="left-width"
+            min="0"
+            max="20"
+            step="0.1"
+            onUserInput={this.handleUserInput.bind(this, "borderLeftWidth")}
+          />
+          <hr />
+          {borderStyles.map((c,i) => (
+          <Radio
+            key={i}
+            value={c}
+            name="border-style"
+            onUserInput={this.handleUserInput.bind(this, "borderStyle")}
+          />
+          ))}
+        </Fieldset>
         <Fieldset name="Color">
           <ColorInput
             name="background"
@@ -135,8 +175,12 @@ class Playground extends React.Component {
             onUserInput={this.handleUserInput.bind(this, "background")}
           />
           <ColorInput
-            name="color-shadow"
+            name="shadow"
             onUserInput={this.handleUserInput.bind(this, "colorShadow")}
+          />
+          <ColorInput
+            name="border"
+            onUserInput={this.handleUserInput.bind(this, "borderColor")}
           />
         </Fieldset>
       </section>
@@ -156,6 +200,13 @@ class Playground extends React.Component {
           {'\n'}
           border-radius: {
             `${shape.borderTopLeftRadius || 0} ${shape.borderTopRightRadius || 0} ${shape.borderBottomLeftRadius || 0} ${shape.borderBottomRightRadius || 0}`}
+          {'\n'}
+          border-style: {shape.borderStyle}
+          {'\n'}
+          border-width: {
+            `${shape.borderTopWidth || 0} ${shape.borderRightWidth || 0} ${shape.borderBottomWidth || 0} ${shape.borderLeftWidth || 0}`}
+          {'\n'}
+          border-color: {shape.borderColor}
         </code>
         </pre>
       </section>
