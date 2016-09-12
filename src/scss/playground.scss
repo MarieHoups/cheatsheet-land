@@ -1,6 +1,6 @@
-$color-light: #e4dcef;
-$color-dark: #333;
-$color-main: #EC185D;
+@import 'variables';
+@import 'colors';
+@import 'slider';
 
 .playground {
   display: flex;

@@ -1,0 +1,27 @@
+@import 'playground';
+
+body {
+  margin: 0;
+}
+
+ul {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 1em;
+  box-shadow: 0 1px 1px #e4dcef;
+  list-style-type: none;
+  li {
+    padding: .2em 2em;
+    a {
+      text-decoration: none;
+      color: darken($color-light, 20%);
+      font-family: roboto;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      &:hover {
+        color: darken($color-light, 30%);
+      }
+    }
+  }
+}
