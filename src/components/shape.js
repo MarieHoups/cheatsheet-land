@@ -1,12 +1,12 @@
 import React from 'react';
+import Draggable from 'react-draggable';
 
 class Shape extends React.Component{
   render() {
     return (
-      <div>
-      <aside></aside>
-      <div style={Object.assign({},this.props.shapeStyle)}></div>
-      </div>
+      <Draggable>
+        <div style={Object.assign({},this.props.shapeStyle)} selected={this.props.selected}></div>
+      </Draggable>
     );
   }
 }

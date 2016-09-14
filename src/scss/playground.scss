@@ -18,7 +18,13 @@ hr {
 .shape {
   width: 50%;
   padding: 3em;
-  z-index: -1;
+  div {
+    cursor: move;
+  }
+}
+
+.controls, .code {
+  z-index: 2;
 }
 
 .controls {
@@ -100,6 +106,7 @@ fieldset {
   }
   & ~ label:first-of-type:after {
     content: '\25b2';
+    cursor: pointer;
   }
   &:checked ~ label:first-of-type:after {
     content: '...';
