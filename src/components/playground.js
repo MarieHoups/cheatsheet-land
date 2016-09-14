@@ -12,35 +12,42 @@ class Playground extends React.Component {
       baseShape: {
         background: '#EC185D',
         width: '10em',
-        height: '10em',
-        boxShadow: '0 0 0 0'
+        height: '10em'
       },
-      bShadow: { x: 0, y: 0, blur: 0, spread: 0, colorShadow: '' }
+      bShadow: { x: 0, y: 0, blur: 0, spread: 0, colorShadow: '' },
+      gradient: {
+        type: '',
+        angle: '',
+        color: '',
+        position: ''
+      }
     };
   }
 
   handleUserInput(property, value) {
-    let style;
-    const multProps = ["x","y","blur","spread", "colorShadow"];
-    if (multProps.includes(property)) {
+    let style, propertyName;
+    const shadowValues = ["x","y","blur","spread", "colorShadow"];
+    const gradientValues = ["type", "angle", "color", "position"];
+
+    if (gradientValues.includes(property) || shadowValues.includes(property)) {
       let concatable = [];
-      style = this.state.bShadow;
-      style[property] = value == 0 || value.match(/^[^-\d]./) ? value : value + 'em';
+      style = gradientValues.includes(property) ? this.state.gradient : this.state.bShadow;
+      propertyName = gradientValues.includes(property) ? 'backgroundImage' : 'boxShadow';
+      style[property] = interpolate(property, value);
+
       for (let p in style) {
-        concatable.push(style[p] );
+        concatable.push(style[p]);
       }
 
       let newstyle = this.state.baseShape;
-      newstyle.boxShadow = concatable.join(' ');
+      newstyle[propertyName] = concatable
+                                .filter((v) => v !== '')
+                                .join(' ')
+                                .replace(/\(\s(.*$)/, '($1)');
       this.setState(newstyle);
-
     } else {
       style = this.state.baseShape;
-      if (property === "background" || property === "borderColor" || property === "borderStyle") {
-        style[property] = value;
-      } else {
-        style[property] = value + 'em';
-      }
+      style[property] = interpolate(property, value);
     }
     this.setState(style);
   }
@@ -48,6 +55,7 @@ class Playground extends React.Component {
   render() {
     const shape = this.state.baseShape;
     const borderStyles = ["none", "solid", "double", "dashed", "dotted"];
+    const gradientTypes = ["linear", "repeating-linear", "radial"];
     return (
       <div className="playground">
       <section className="controls">
@@ -183,6 +191,35 @@ class Playground extends React.Component {
             onUserInput={this.handleUserInput.bind(this, "borderColor")}
           />
         </Fieldset>
+        <Fieldset name="Gradient">
+          <Slider
+            name="angle"
+            min="0"
+            max="360"
+            step="1"
+            onUserInput={this.handleUserInput.bind(this, "angle")}
+          />
+          <Slider
+            name="position"
+            min="0"
+            max="100"
+            step="0.5"
+            onUserInput={this.handleUserInput.bind(this, "position")}
+          />
+          <hr/>
+          {gradientTypes.map((c,i) => (
+            <Radio
+              key={i}
+              value={c}
+              name="gradient-type"
+              onUserInput={this.handleUserInput.bind(this, "type")}
+            />
+          ))}
+          <ColorInput
+            name="color"
+            onUserInput={this.handleUserInput.bind(this, "color")}
+          />
+        </Fieldset>
       </section>
       <section className="shape">
         <Shape shapeStyle={this.state.baseShape}/>
@@ -196,7 +233,7 @@ class Playground extends React.Component {
           {'\n'}
           width: {shape.width}
           {'\n'}
-          box-shadow: {this.state.boxShadow}
+          box-shadow: {shape.boxShadow}
           {'\n'}
           border-radius: {
             `${shape.borderTopLeftRadius || 0} ${shape.borderTopRightRadius || 0} ${shape.borderBottomLeftRadius || 0} ${shape.borderBottomRightRadius || 0}`}
@@ -207,11 +244,32 @@ class Playground extends React.Component {
             `${shape.borderTopWidth || 0} ${shape.borderRightWidth || 0} ${shape.borderBottomWidth || 0} ${shape.borderLeftWidth || 0}`}
           {'\n'}
           border-color: {shape.borderColor}
+          {'\n'}
+          background-image: {`\n  `}
+          {shape.backgroundImage}
         </code>
         </pre>
       </section>
       </div>
     );
+  }
+}
+
+const interpolate = function (property, value) {
+  switch(property) {
+    case 'color':
+    case 'colorShadow':
+    case 'background':
+    case 'borderStyle':
+    case 'borderColor':
+      return value;
+    case 'type':
+      return `${value}-gradient(`;
+    case 'angle':
+      return `${value}deg,`;
+    case 'position':
+      return `${value}%`;
+    default: return `${value}em`;
   }
 }
 
