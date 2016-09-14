@@ -4,7 +4,7 @@
 
 .playground {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 section {
@@ -26,6 +26,9 @@ hr {
   min-width: 21em;
   width: 25%;
   font-family: roboto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
   label {
     color: $color-light;
     font-weight: 100;
@@ -36,7 +39,7 @@ hr {
 .code {
   background: $color-light;
   width: 25%;
-  word-wrap: wrap;
+  overflow-x: scroll;
 }
 
 fieldset {
