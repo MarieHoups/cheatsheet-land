@@ -29224,9 +29224,13 @@ var Fieldset = function Fieldset(props) {
       null,
       props.name
     ),
-    _react2.default.createElement("input", { type: "checkbox", id: "expand-" + props.name }),
-    _react2.default.createElement("label", { htmlFor: "expand-" + props.name }),
-    props.children
+    _react2.default.createElement(
+      "div",
+      { className: "fieldset" },
+      _react2.default.createElement("input", { type: "checkbox", id: "expand-" + props.name }),
+      _react2.default.createElement("label", { htmlFor: "expand-" + props.name }),
+      props.children
+    )
   );
 };
 

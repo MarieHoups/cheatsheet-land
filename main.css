@@ -48,17 +48,47 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 20em; }
 
 .playground {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  height: 100vh; }
+  height: 100vh;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  .playground section:nth-of-type(2) {
+    -ms-flex-preferred-size: 40%;
+        flex-basis: 40%;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1; }
+    @media screen and (max-width: 620px) {
+      .playground section:nth-of-type(2) {
+        -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
+        -webkit-box-ordinal-group: 0;
+            -ms-flex-order: -1;
+                order: -1;
+        height: 70vh; } }
+  .playground section:nth-of-type(3) {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 30%;
+            flex: 1 1 30%; }
 
 section {
   padding: 1em; }
 
 hr {
-  border-color: #4f4842; }
+  border-color: #4f4842;
+  -ms-flex-preferred-size: 340px;
+      flex-basis: 340px; }
+
+.fieldset {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
 
 .shape {
-  width: 50%;
   padding: 3em; }
   .shape div {
     cursor: move; }
@@ -68,20 +98,25 @@ hr {
 
 .controls {
   background: #333;
-  min-width: 21em;
-  width: 25%;
+  -ms-flex-preferred-size: 360px;
+      flex-basis: 360px;
   font-family: roboto;
   overflow-y: auto;
   overflow-x: hidden;
   position: relative; }
   .controls label {
     color: #e4dcef;
-    font-weight: 100;
-    padding: 1em; }
+    font-weight: 100; }
+  @media screen and (max-width: 420px) {
+    .controls {
+      -ms-flex-preferred-size: 420px;
+          flex-basis: 420px; } }
+  @media screen and (max-width: 1200px) {
+    .controls {
+      height: 80vh; } }
 
 .code {
   background: #e4dcef;
-  width: 25%;
   overflow-x: scroll; }
 
 fieldset {
@@ -93,19 +128,30 @@ fieldset {
     font-weight: 300; }
 
 .lbl-range, .lbl-color {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-preferred-size: 360px;
+      flex-basis: 360px;
   font-size: 12px;
+  -webkit-transition: all .5s;
   transition: all .5s; }
 
+.lbl-range {
+  padding: 1em; }
+
 .lbl-color {
-  margin-top: 1em; }
-  .lbl-color input {
-    float: right;
-    transform: translateY(-1em); }
+  margin: .5em 1em; }
 
 .lbl-radio {
   font-size: 0.8em;
-  margin: 1em 0; }
+  padding: .8em; }
   .lbl-radio [type=radio] {
     padding: 0;
     position: absolute;
@@ -118,7 +164,8 @@ fieldset {
   position: absolute;
   clip: rect(0, 0, 0, 0); }
   [type=checkbox]:checked ~ label:not(:first-of-type) {
-    transform: translateX(40%) scale(0); }
+    -webkit-transform: translateX(40%) scale(0);
+            transform: translateX(40%) scale(0); }
   [type=checkbox]:checked ~ hr {
     border: none;
     margin: 0; }
@@ -135,11 +182,29 @@ fieldset {
   [type=checkbox]:checked ~ label:first-of-type:after {
     content: '...'; }
   [type=checkbox] + label {
-    display: block;
     color: #e4dcef;
     height: 0;
-    padding: 0;
-    transform: translate(17em, -1.5em); }
+    padding: 0 1em;
+    text-align: right;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -webkit-transform: translateY(-1.5em);
+            transform: translateY(-1.5em); }
+
+.stops {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start; }
+
+.colorstop {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: solid #ccc 1px; }
 
 *, *:before, *:after {
   box-sizing: border-box; }
@@ -148,8 +213,12 @@ body {
   margin: 0; }
 
 ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   margin: 0;
   padding: 1em;
   box-shadow: 0 1px 1px #e4dcef;
