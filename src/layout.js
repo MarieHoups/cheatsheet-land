@@ -13,14 +13,9 @@ class Layout extends React.Component{
             <li>
               <Link to="/color-table">Color Table</Link>
             </li>
-            <li>
-              <Link to="/notebook">Shortcuts</Link>
-            </li>
           </ul>
         </nav>
-        <main>
           {this.props.children}
-        </main>
       </div>
     );
   }

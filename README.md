@@ -1,3 +1,3 @@
-### Cheat sheets collection
+### CSS playground
 
-Hand-sewn notebooks, tables and more to fight memory loss
+Interactive tools to make (weird) css shapes

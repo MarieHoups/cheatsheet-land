@@ -1,10 +1,9 @@
 import React from 'react';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, IndexRedirect, hashHistory } from 'react-router';
 
 import Layout from './layout';
 
 import TableContainer from './components/tableContainer';
-import Notebook from './components/notebook';
 import Playground from './components/playground';
 
 import { Provider } from 'react-redux';
@@ -15,8 +14,8 @@ const routes = (
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path='/' component={Layout}>
+        <IndexRedirect to="/playground" />
         <Route path='color-table' component={connector(TableContainer)} />
-        <Route path='notebook' component={Notebook} />
         <Route path='playground' component={Playground} />
       </Route>
     </Router>
