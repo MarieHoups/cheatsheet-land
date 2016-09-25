@@ -17,6 +17,7 @@ class Slider extends React.Component{
           step={this.props.step}
           ref="rangeInput"
           onChange={this._handleChange.bind(this)}
+          onMouseUp={this._handleChange.bind(this)}
         />
       </label>
     );
