@@ -3,7 +3,7 @@ table {
 
 td {
   font-size: 1em;
-  font-family: Monaco;
+  font-family: Monaco, Monospace;
   padding: 1em; }
 
 input[type=text] {
@@ -23,29 +23,83 @@ input[type=text] {
 
 input[type=range] {
   -webkit-appearance: none;
-  background-color: transparent;
-  margin-top: .5em;
-  width: 15em;
-  float: right; }
+  width: 17em;
+  padding: 0; }
+  input[type=range]:focus {
+    outline: none; }
+
+/* Safari/Chrome */
+input[type=range]::-webkit-slider-runnable-track {
+  height: 3px;
+  background: #5e5953;
+  width: 17em;
+  border-radius: 2em;
+  box-shadow: inset 1px 1px #111; }
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: solid 6px rgba(236, 24, 95, 0.4);
-  height: 1.5em;
-  width: 1.5em;
   border-radius: 50%;
   background: #EC185D;
   background-clip: padding-box;
   cursor: pointer;
-  position: relative;
-  top: -.55em; }
+  height: 1.5em;
+  width: 1.5em;
+  margin-top: -6px; }
 
-input[type=range]::-webkit-slider-runnable-track {
+/* Firefox */
+input[type=range]::-moz-range-track {
   height: 3px;
   background: #5e5953;
+  width: 17em;
   border-radius: 2em;
-  box-shadow: inset 1px 1px #111;
-  width: 20em; }
+  box-shadow: inset 1px 1px #111; }
+
+input[type=range]::-moz-range-thumb {
+  border: solid 6px rgba(236, 24, 95, 0.4);
+  border-radius: 50%;
+  background: #EC185D;
+  background-clip: padding-box;
+  cursor: pointer;
+  height: .5em;
+  width: .5em; }
+
+input[type=range]:-moz-focusring {
+  outline: 1px dashed rgba(0, 0, 0, 0.5);
+  outline-offset: -1px; }
+
+/* IE */
+input[type=range]::-ms-track {
+  width: 17em;
+  height: 3px;
+  background: transparent;
+  border-color: transparent;
+  border-width: 1em 0;
+  padding: 0;
+  color: transparent; }
+
+input[type=range]::-ms-fill-lower {
+  background: #5e5953;
+  border-radius: 2em;
+  box-shadow: inset 1px 1px #111; }
+
+input[type=range]::-ms-fill-upper {
+  background: #5e5953;
+  border-radius: 2em;
+  box-shadow: inset 1px 1px #111; }
+
+input[type=range]::-ms-thumb {
+  border: none;
+  border: solid 6px rgba(236, 24, 95, 0.4);
+  border-radius: 50%;
+  background: #EC185D;
+  background-clip: padding-box;
+  cursor: pointer;
+  height: .5em;
+  width: .5em; }
+
+input[type=range]::-ms-tooltip {
+  display: none; }
 
 .playground {
   display: -webkit-box;
@@ -78,15 +132,16 @@ section {
 
 hr {
   border-color: #4f4842;
-  -ms-flex-preferred-size: 340px;
-      flex-basis: 340px; }
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%; }
 
 .fieldset {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
+      flex-wrap: wrap;
+  position: relative; }
 
 .shape {
   padding: 3em; }
@@ -100,7 +155,7 @@ hr {
   background: #333;
   -ms-flex-preferred-size: 360px;
       flex-basis: 360px;
-  font-family: roboto;
+  font-family: roboto, sans-serif;
   overflow-y: auto;
   overflow-x: hidden;
   position: relative; }
@@ -117,7 +172,8 @@ hr {
 
 .code {
   background: #e4dcef;
-  overflow-x: scroll; }
+  overflow-x: scroll;
+  font-size: 14px; }
 
 fieldset {
   border: none;
@@ -137,8 +193,9 @@ fieldset {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-preferred-size: 360px;
-      flex-basis: 360px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
   font-size: 12px;
   -webkit-transition: all .5s;
   transition: all .5s; }
@@ -157,9 +214,13 @@ fieldset {
     position: absolute;
     clip: rect(0, 0, 0, 0); }
     .lbl-radio [type=radio]:checked + span:after {
-      content: ' \2713';
-      color: #ec185d; }
+      content: '\2713';
+      color: #ec185d;
+      position: absolute;
+      -webkit-transform: translateX(3px);
+              transform: translateX(3px); }
 
+/* Collapsing fieldset */
 [type=checkbox] {
   position: absolute;
   clip: rect(0, 0, 0, 0); }
@@ -172,7 +233,7 @@ fieldset {
   [type=checkbox]:checked ~ label input,
   [type=checkbox]:checked ~ label:not(:first-of-type),
   [type=checkbox]:checked ~ .radio {
-    height: 0;
+    height: 1px;
     padding: 0;
     margin: 0;
     opacity: 0; }
@@ -210,7 +271,8 @@ fieldset {
   box-sizing: border-box; }
 
 body {
-  margin: 0; }
+  margin: 0;
+  font-size: 16px; }
 
 ul {
   display: -webkit-box;
@@ -228,7 +290,7 @@ ul {
     ul li a {
       text-decoration: none;
       color: #ae96cf;
-      font-family: roboto;
+      font-family: roboto, sans-serif;
       font-size: 0.9em;
       text-transform: uppercase; }
       ul li a:hover {
