@@ -6,10 +6,12 @@ import buffer from 'vinyl-buffer';
 import browserify from 'browserify';
 import exorcist from 'exorcist';
 import eslint from 'gulp-eslint';
+import autoprefixer from 'gulp-autoprefixer';
 
 gulp.task('sass', function() {
   return gulp.src("./src/scss/*.scss")
     .pipe(sass())
+    .pipe(autoprefixer())
     .pipe(gulp.dest("./public/css"));
 });
 

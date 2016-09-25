@@ -1,28 +1,88 @@
-input[type=range] {
-  -webkit-appearance: none;
-  background-color: transparent;
-  margin-top: .5em;
-  width: 15em;
-  float: right;
+@mixin track {
+  height: 3px;
+  background:#5e5953;
+  width: 17em;
+  border-radius: 2em;
+  box-shadow: inset 1px 1px #111;
 }
 
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
+@mixin thumb {
   border: solid 6px hsla(340, 85%, 51%, .4);
-  height: 1.5em;
-  width: 1.5em;
   border-radius: 50%;
   background: #EC185D;
   background-clip: padding-box;
   cursor: pointer;
-  position: relative;
-  top: -.55em;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
-  height: 3px;
-  background:#5e5953;
-  border-radius: 2em;
-  box-shadow: inset 1px 1px #111;
-  width: 20em;
+input[type=range] {
+  -webkit-appearance: none;
+  width: 17em;
+  padding: 0;
+  &:focus {
+    outline: none;
+  }
+}
+
+/* Safari/Chrome */
+input[type=range] {
+  &::-webkit-slider-runnable-track {
+    @include track;
+  }
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    @include thumb;
+    height: 1.5em;
+    width: 1.5em;
+    margin-top: -6px;
+  }
+}
+
+/* Firefox */
+input[type=range] {
+  &::-moz-range-track {
+    @include track;
+  }
+  &::-moz-range-thumb {
+    @include thumb;
+    height: .5em;
+    width: .5em;
+  }
+  &:-moz-focusring{
+    outline: 1px dashed rgba(0,0,0,.5);
+    outline-offset: -1px;
+  }
+}
+
+/* IE */
+input[type=range] {
+  &::-ms-track {
+    width: 17em;
+    height: 3px;
+    background: transparent;
+    // let larger thumb overflow
+    border-color: transparent;
+    border-width: 1em 0;
+    padding: 0;
+    // remove tick marks
+    color: transparent;
+  }
+  &::-ms-fill-lower {
+    background: #5e5953;
+    border-radius: 2em;
+    box-shadow: inset 1px 1px #111;
+  }
+  &::-ms-fill-upper {
+    background: #5e5953;
+    border-radius: 2em;
+    box-shadow: inset 1px 1px #111;
+  }
+  &::-ms-thumb {
+    border: none;
+    @include thumb;
+    height: .5em;
+    width: .5em;
+  }
+  &::-ms-tooltip {
+    display: none;
+  }
 }

@@ -5,6 +5,19 @@
 .playground {
   display: flex;
   height: 100vh;
+  flex-wrap: wrap;
+  section:nth-of-type(2) {
+    flex-basis: 40%;
+    flex-grow: 1;
+    @media screen and (max-width: 620px) {
+      flex-basis: 100%;
+      order: -1;
+      height: 70vh;
+    }
+  }
+  section:nth-of-type(3) {
+    flex: 1 1 30%;
+  }
 }
 
 section {
@@ -13,10 +26,16 @@ section {
 
 hr {
   border-color: #4f4842;
+  flex-basis: 100%;
+}
+
+.fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
 }
 
 .shape {
-  width: 50%;
   padding: 3em;
   div {
     cursor: move;
@@ -29,23 +48,27 @@ hr {
 
 .controls {
   background: $color-dark;
-  min-width: 21em;
-  width: 25%;
-  font-family: roboto;
+  flex-basis: 360px;
+  font-family: roboto, sans-serif;
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
   label {
     color: $color-light;
     font-weight: 100;
-    padding: 1em;
+  }
+  @media screen and (max-width: 420px) {
+    flex-basis: 420px;
+  }
+  @media screen and (max-width: 1200px) {
+    height: 80vh;
   }
 }
 
 .code {
   background: $color-light;
-  width: 25%;
   overflow-x: scroll;
+  font-size: 14px;
 }
 
 fieldset {
@@ -59,33 +82,40 @@ fieldset {
 }
 
 .lbl-range, .lbl-color {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  //flex-basis: 360px;
+  flex: 1 1 100%;
   font-size: 12px;
   transition: all .5s;
 }
 
+.lbl-range {
+  padding: 1em;
+}
+
 .lbl-color {
-  margin-top: 1em;
-  input {
-    float: right;
-    transform: translateY(-1em);
-  }
+  margin: .5em 1em;
 }
 
 .lbl-radio {
   font-size: 0.8em;
-  margin: 1em 0;
+  padding: .8em;
   [type=radio] {
     padding: 0;
     position: absolute;
     clip: rect(0,0,0,0);
     &:checked + span:after {
-      content: ' \2713';
+      content: '\2713';
       color: $color-main;
+      position: absolute;
+      transform: translateX(3px);
     }
   }
 }
 
+/* Collapsing fieldset */
 [type=checkbox] {
   position: absolute;
   clip: rect(0,0,0,0);
@@ -99,7 +129,7 @@ fieldset {
   &:checked ~ label input,
   &:checked ~ label:not(:first-of-type),
   &:checked ~ .radio {
-    height: 0;
+    height: 1px; // 0 would make it disappear forever in IE/Edge
     padding: 0;
     margin: 0;
     opacity: 0;
@@ -112,10 +142,23 @@ fieldset {
     content: '...';
   }
   & + label {
-    display: block;
     color: $color-light;
     height: 0;
-    padding: 0;
-    transform: translate(17em, -1.5em);
+    padding: 0 1em;
+    text-align: right;
+    flex: 1;
+    transform: translateY(-1.5em);
   }
+}
+
+.stops {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.colorstop {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: solid #ccc 1px;
 }

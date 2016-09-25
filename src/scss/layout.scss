@@ -6,6 +6,7 @@
 
 body {
   margin: 0;
+  font-size: 16px;
 }
 
 ul {
@@ -20,7 +21,7 @@ ul {
     a {
       text-decoration: none;
       color: darken($color-light, 20%);
-      font-family: roboto;
+      font-family: roboto, sans-serif;
       font-size: 0.9em;
       text-transform: uppercase;
       &:hover {
