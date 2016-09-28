@@ -21,6 +21,19 @@ input[type=text] {
   margin: 2em auto;
 }
 
+.loader {
+  width: 1.5em;
+  height: 1.5em;
+  border: dashed 3px deeppink;
+  border-radius: 50%;
+  animation: spin 1s infinite;
+  margin: 20vh auto;
+}
+
+@keyframes spin {
+  50% { transform: rotate(180deg); }
+}
+
 @media screen and (min-width: 600px) {
   table {
     min-width: 40em;

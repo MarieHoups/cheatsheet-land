@@ -6,7 +6,7 @@ class ColorTable extends React.Component{
     super();
     this.state = {
       data: [],
-      loading: false
+      loading: true
     };
   }
 
@@ -25,7 +25,7 @@ class ColorTable extends React.Component{
           });
         }
         var sortedByShade = _.orderBy(sortable, ["h", "s", "l"], ['asc', 'asc', 'asc']);
-        this.setState({data: sortedByShade});
+        this.setState({data: sortedByShade, loading: false});
       }.bind(this))
       .catch(function(error) {
         console.warn('Error', error.message);
@@ -42,13 +42,17 @@ class ColorTable extends React.Component{
   }
 
   render() {
-    return (
-      <table>
-        <tbody>
-        {this.state.data.map(this.eachColor.bind(this))}
-        </tbody>
-      </table>
-    );
+    if (this.state.loading) {
+      return <div className="loader"></div>;
+    } else {
+      return (
+        <table>
+          <tbody>
+          {this.state.data.map(this.eachColor.bind(this))}
+          </tbody>
+        </table>
+      );
+    }
   }
 }
 
