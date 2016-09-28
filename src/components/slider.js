@@ -1,9 +1,10 @@
 import React from 'react';
 
 class Slider extends React.Component{
-  _handleChange() {
-    this.props.onUserInput(this.refs.rangeInput.value);
-    this.setState({currentValue: this.refs.rangeInput.value})
+  _handleChange(e) {
+    console.log(e);
+    this.props.onUserInput(this.rangeInput.value);
+    this.setState({currentValue: this.rangeInput.value})
   }
 
   render() {
@@ -15,7 +16,7 @@ class Slider extends React.Component{
           min={this.props.min}
           max={this.props.max}
           step={this.props.step}
-          ref="rangeInput"
+          ref={(input) => this.rangeInput = input}
           onChange={this._handleChange.bind(this)}
           onMouseUp={this._handleChange.bind(this)}
         />

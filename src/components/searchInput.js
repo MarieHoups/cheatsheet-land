@@ -2,7 +2,7 @@ import React from 'react';
 
 class SearchInput extends React.Component{
   _handleChange() {
-    this.props.onUserInput(this.refs.filterTextInput.value);
+    this.props.onUserInput(this.filterTextInput.value);
   }
 
   render() {
@@ -13,7 +13,7 @@ class SearchInput extends React.Component{
           type="text"
           placeholder="Search by name..."
           value={this.props.filterText}
-          ref="filterTextInput"
+          ref={(input) => this.filterTextInput = input}
           onChange={this._handleChange.bind(this)}
         />
         </form>

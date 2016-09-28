@@ -3,7 +3,7 @@ import React from 'react';
 class ColorInput extends React.Component{
 
   _handleChange() {
-    this.props.onUserInput(this.refs.colorInput.value);
+    this.props.onUserInput(this.colorInput.value);
   }
 
   render() {
@@ -12,7 +12,7 @@ class ColorInput extends React.Component{
         <input
           type="text"
           defaultValue={this.props.defaultValue}
-          ref="colorInput"
+          ref={(input) => this.colorInput = input}
           onChange={this._handleChange.bind(this)}
         />
       </label>

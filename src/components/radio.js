@@ -2,7 +2,7 @@ import React from 'react';
 
 class Radio extends React.Component{
   _handleChange() {
-    this.props.onUserInput(this.refs.radioInput.value);
+    this.props.onUserInput(this.radioInput.value);
   }
 
   render() {
@@ -11,7 +11,7 @@ class Radio extends React.Component{
         <input
           type="radio"
           name={this.props.name}
-          ref="radioInput"
+          ref={(input) => this.radioInput = input}
           onChange={this._handleChange.bind(this)}
           value={this.props.value}
         />{this.props.value}
