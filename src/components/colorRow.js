@@ -1,28 +1,22 @@
 import React from 'react';
 
-class ColorRow extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      color: setTextColor(this.props.children.l),
-      background: this.props.children.hex
-    };
-  }
+const ColorRow = (props) => {
 
-  render() {
-    const hsl = 'hsl(' + this.props.children.h + ', ' + this.props.children.s + '%, ' + this.props.children.l + '%)';
-    return (
-      <tr style={this.state}>
-        <td>{this.props.children.name}</td>
-        <td>{this.props.children.hex}</td>
-        <td>{hsl}</td>
-      </tr>
-    );
-  }
-}
+  const hsl = `hsl(${props.children.h}, ${props.children.s}%, ${props.children.l}%)`;
+  const rowStyle = {
+    color: setTextColor(props.children.l),
+    background: props.children.hex
+  };
 
-function setTextColor(lightness) {
-  return lightness > 45 ? "#333" : "#eee";
-}
+  return (
+    <tr style={rowStyle}>
+      <td>{props.children.name}</td>
+      <td>{props.children.hex}</td>
+      <td>{hsl}</td>
+    </tr>
+  );
+};
+
+const setTextColor = (lightness) => lightness > 45 ? "#333" : "#eee";
 
 export default ColorRow;

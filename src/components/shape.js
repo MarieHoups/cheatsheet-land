@@ -1,14 +1,10 @@
 import React from 'react';
 import Draggable from 'react-draggable';
 
-class Shape extends React.Component{
-  render() {
-    return (
-      <Draggable>
-        <div style={Object.assign({},this.props.shapeStyle)} selected={this.props.selected}></div>
-      </Draggable>
-    );
-  }
-}
+const Shape = (props) => (
+  <Draggable>
+    <div style={Object.assign({}, props.shapeStyle)} selected={props.selected}></div>
+  </Draggable>
+);
 
 export default Shape;
