@@ -4,10 +4,11 @@ import Shape from './shape';
 import ColorInput from './colorInput';
 import Fieldset from './fieldset';
 import Radio from './radio';
+import Thumbnail from './in_progress/thumbnail';
 
 class Playground extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       baseShape: {
         background: '#EC185D',
@@ -20,10 +21,14 @@ class Playground extends React.Component {
         angle: '',
         color: '',
         position: ''
-      }
+      },
+      thumbnails: []
     };
   }
-
+  componentDidMount() {
+    var shapes = this._getAllShapes();
+    this.setState({thumbnails: shapes});
+  }
   handleUserInput(property, value) {
     let style, propertyName;
     const shadowValues = ["x","y","blur","spread", "colorShadow"];
@@ -51,11 +56,37 @@ class Playground extends React.Component {
     }
     this.setState(style);
   }
-
+  _getAllShapes() {
+    var shapes = localStorage.getItem('shapes');
+    if (shapes) {
+      return JSON.parse(shapes);
+    }
+    return [];
+  }
+  _saveShape() {
+    var shapes = this._getAllShapes();
+    var style = this.state.baseShape;
+    shapes.push(style);
+    localStorage.setItem('shapes', JSON.stringify(shapes));
+    this._displayShapes();
+    return true;
+  }
+  _clearShapes() {
+    localStorage.removeItem('shapes');
+    this.setState({thumbnails: []});
+    this._displayShapes();
+  }
+  _displayShapes() {
+    var shapes = this._getAllShapes();
+    this.setState({thumbnails: shapes});
+  }
   render() {
     const shape = this.state.baseShape;
     const borderStyles = ["none", "solid", "double", "dashed", "dotted"];
     const gradientTypes = ["linear", "repeating-linear", "radial"];
+    var thumbnails = this.state.thumbnails.map(function(thumbnail, i) {
+                      return ( <div className="storage" style={thumbnail} key={i}></div> );
+                    });
     return (
       <div className="playground">
       <section className="controls">
@@ -222,6 +253,7 @@ class Playground extends React.Component {
         </Fieldset>
       </section>
       <section className="shape">
+        <button onClick={this._saveShape.bind(this)}>Save me!</button>
         <Shape shapeStyle={this.state.baseShape}/>
       </section>
       <section className="code">
@@ -245,10 +277,14 @@ class Playground extends React.Component {
           {'\n'}
           border-color: {shape.borderColor}
           {'\n'}
-          background-image: {`\n  `}
+          background-image:
           {shape.backgroundImage}
         </code>
         </pre>
+      <div><button onClick={this._clearShapes.bind(this)}>Clear</button></div>
+      <aside className="thumbnails">
+        { thumbnails }
+      </aside>
       </section>
       </div>
     );

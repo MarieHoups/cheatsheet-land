@@ -14,7 +14,7 @@ class TableContainer extends React.Component{
 
   render() {
     return (
-      <div>
+      <main>
         <SearchInput
           filterText={this.props.searchTerm}
           onUserInput={this._handleUserInput}
@@ -23,7 +23,7 @@ class TableContainer extends React.Component{
           url="https://raw.githubusercontent.com/bahamas10/css-color-names/master/css-color-names.json"
           colors={this.props.data}
           filterText={this.props.searchTerm}/>
-      </div>
+      </main>
     );
   }
 }

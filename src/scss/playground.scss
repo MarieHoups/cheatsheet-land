@@ -4,8 +4,9 @@
 
 .playground {
   display: flex;
-  height: 100vh;
+  //height: 100vh;
   flex-wrap: wrap;
+  flex: 1 0 auto;
   section:nth-of-type(2) {
     flex-basis: 40%;
     flex-grow: 1;
@@ -36,7 +37,6 @@ hr {
 }
 
 .shape {
-  padding: 3em;
   div {
     cursor: move;
   }
@@ -67,7 +67,7 @@ hr {
 
 .code {
   background: $color-light;
-  overflow-x: scroll;
+  overflow-x: auto;
   font-size: 14px;
 }
 
@@ -161,4 +161,74 @@ fieldset {
   height: 20px;
   border-radius: 50%;
   border: solid #ccc 1px;
+}
+
+.has-tooltip {
+  margin: 0;
+  &:after {
+    content: attr(data-tip);
+    background: rgba(0,0,0,.8);
+    font-family: monospace;
+    padding: 1em;
+    display: block;
+    opacity: 0;
+    position: absolute;
+    transform: translateY(1.8em);
+
+  }
+  &:hover {
+    &:after {
+      opacity: 1;
+    }
+  }
+}
+
+.shape button {
+  border: solid 1px $color-light;
+  float: right;
+}
+
+.code div {
+  text-align: right;
+}
+
+div > button {
+  border: solid 1px darken($color-light, 20%);
+  margin-bottom: .5em;
+}
+
+button {
+  background:transparent;
+  border-radius: 5%;
+  color: #5e5953;
+  font-size: .8em;
+  font-weight: 800;
+  padding: 1em;
+  transition: .3s;
+  &:hover {
+    color: $color-main;
+    border-color: #5e5953;
+  }
+  &:focus {
+    outline: solid 1px darken($color-light, 5%);
+  }
+}
+
+.thumbnails {
+  background: lighten($color-light, 3%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.storage {
+  opacity: 0;
+  transform: scale(.3);
+  animation: showMeSlowly 1s forwards;
+}
+
+@keyframes showMeSlowly {
+  100% {
+    opacity: 1;
+  }
 }

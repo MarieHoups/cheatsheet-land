@@ -9,6 +9,10 @@ body {
   font-size: 16px;
 }
 
+nav {
+  flex-shrink: 0;
+}
+
 ul {
   display: flex;
   justify-content: flex-end;
@@ -27,6 +31,31 @@ ul {
       &:hover {
         color: darken($color-light, 30%);
       }
+    }
+  }
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; // flex items don't care about min-height in IE
+  main {
+    flex: 1 0 auto;
+  }
+}
+
+footer {
+  padding: 1em;
+  flex-shrink: 0;
+  p {
+    font-family: roboto, sans-serif;
+    margin: 0;
+    text-align: center;
+    div {
+      display: inline-block;
+      width: 100px;
+      height: 200px;
+      background: url('../img/makgeolli.png') no-repeat;
     }
   }
 }
