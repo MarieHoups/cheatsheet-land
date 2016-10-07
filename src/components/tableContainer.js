@@ -1,6 +1,6 @@
 import React from 'react';
-import SearchInput from './SearchInput';
-import ColorTable from './ColorTable';
+import SearchInput from './colorTable/SearchInput';
+import ColorTable from './ColorTable/ColorTable';
 
 class TableContainer extends React.Component{
   constructor() {
