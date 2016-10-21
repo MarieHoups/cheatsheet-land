@@ -18,7 +18,7 @@ const ControlPanel = (props) => {
             max="20"
             step="0.1"
             defaultValue={props.defaultValue.height}
-            onUserInput={props.onUserInput("height")}
+            onUserInput={props.handleBasicInput("height")}
           />
           <Slider
             name="width"
@@ -26,7 +26,7 @@ const ControlPanel = (props) => {
             max="20"
             step="0.1"
             defaultValue={props.defaultValue.width}
-            onUserInput={props.onUserInput("width")}
+            onUserInput={props.handleBasicInput("width")}
           />
         </Fieldset>
         <Fieldset name="Box-shadow">
@@ -35,28 +35,28 @@ const ControlPanel = (props) => {
             min="-20"
             max="30"
             step="0.1"
-            onUserInput={props.onUserInput("x")}
+            onUserInput={props.handleComplexInput("x", "boxShadow")}
           />
           <Slider
             name="y-offset"
             min="-20"
             max="30"
             step="0.1"
-            onUserInput={props.onUserInput("y")}
+            onUserInput={props.handleComplexInput("y", "boxShadow")}
           />
           <Slider
             name="blur"
             min="0"
             max="10"
             step="0.1"
-            onUserInput={props.onUserInput("blur")}
+            onUserInput={props.handleComplexInput("blur", "boxShadow")}
           />
           <Slider
             name="spread"
             min="-20"
             max="30"
             step="0.1"
-            onUserInput={props.onUserInput("spread")}
+            onUserInput={props.handleComplexInput("spread", "boxShadow")}
           />
         </Fieldset>
         <Fieldset name="Border-radius">
@@ -65,28 +65,28 @@ const ControlPanel = (props) => {
             min="0"
             max="50"
             step="0.1"
-            onUserInput={props.onUserInput("borderTopLeftRadius")}
+            onUserInput={props.handleBasicInput("borderTopLeftRadius")}
           />
           <Slider
             name="top-right"
             min="0"
             max="50"
             step="0.1"
-            onUserInput={props.onUserInput("borderTopRightRadius")}
+            onUserInput={props.handleBasicInput("borderTopRightRadius")}
           />
           <Slider
             name="bottom-right"
             min="0"
             max="50"
             step="0.1"
-            onUserInput={props.onUserInput("borderBottomRightRadius")}
+            onUserInput={props.handleBasicInput("borderBottomRightRadius")}
           />
           <Slider
             name="bottom-left"
             min="0"
             max="50"
             step="0.1"
-            onUserInput={props.onUserInput("borderBottomLeftRadius")}
+            onUserInput={props.handleBasicInput("borderBottomLeftRadius")}
           />
         </Fieldset>
         <Fieldset name="Border">
@@ -95,28 +95,28 @@ const ControlPanel = (props) => {
             min="0"
             max="20"
             step="0.1"
-            onUserInput={props.onUserInput("borderTopWidth")}
+            onUserInput={props.handleBasicInput("borderTopWidth")}
           />
           <Slider
             name="right-width"
             min="0"
             max="20"
             step="0.1"
-            onUserInput={props.onUserInput("borderRightWidth")}
+            onUserInput={props.handleBasicInput("borderRightWidth")}
           />
           <Slider
             name="bottom-width"
             min="0"
             max="20"
             step="0.1"
-            onUserInput={props.onUserInput("borderBottomWidth")}
+            onUserInput={props.handleBasicInput("borderBottomWidth")}
           />
           <Slider
             name="left-width"
             min="0"
             max="20"
             step="0.1"
-            onUserInput={props.onUserInput("borderLeftWidth")}
+            onUserInput={props.handleBasicInput("borderLeftWidth")}
           />
           <hr />
           {borderStyles.map((c,i) => (
@@ -124,7 +124,7 @@ const ControlPanel = (props) => {
             key={i}
             value={c}
             name="border-style"
-            onUserInput={props.onUserInput("borderStyle")}
+            onUserInput={props.handleBasicInput("borderStyle")}
           />
           ))}
         </Fieldset>
@@ -132,15 +132,15 @@ const ControlPanel = (props) => {
           <ColorInput
             name="background"
             defaultValue={props.defaultValue.background}
-            onUserInput={props.onUserInput("background")}
+            onUserInput={props.handleBasicInput("background")}
           />
           <ColorInput
             name="shadow"
-            onUserInput={props.onUserInput("colorShadow")}
+            onUserInput={props.handleComplexInput("colorShadow", "boxShadow")}
           />
           <ColorInput
             name="border"
-            onUserInput={props.onUserInput("borderColor")}
+            onUserInput={props.handleBasicInput("borderColor")}
           />
         </Fieldset>
         <Fieldset name="Gradient">
@@ -149,7 +149,7 @@ const ControlPanel = (props) => {
             min="0"
             max="100"
             step="0.5"
-            onUserInput={props.onUserInput("position")}
+            onUserInput={props.handleComplexInput("position", "backgroundImage")}
           />
           <hr/>
           {gradientTypes.map((c,i) => (
@@ -157,12 +157,12 @@ const ControlPanel = (props) => {
               key={i}
               value={c}
               name="gradient-type"
-              onUserInput={props.onUserInput("type")}
+              onUserInput={props.handleComplexInput("type", "backgroundImage")}
             />
           ))}
           <ColorInput
             name="color"
-            onUserInput={props.onUserInput("color")}
+            onUserInput={props.handleComplexInput("color", "backgroundImage")}
           />
         </Fieldset>
       </section>

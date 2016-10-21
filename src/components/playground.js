@@ -2,18 +2,19 @@ import React from 'react';
 import Shape from './panels/shape';
 import ControlPanel from './panels/controlPanel';
 import Sidebar from './panels/sidebar';
+import Update from 'react-addons-update';
 
 class Playground extends React.Component {
   constructor() {
     super();
     this.state = {
-      baseShape: {
+      currentShape: {
         background: '#EC185D',
         width: '10em',
         height: '10em'
       },
-      bShadow: { x: 0, y: 0, blur: 0, spread: 0, colorShadow: '' },
-      gradient: {
+      boxShadow: { x: 0, y: 0, blur: 0, spread: 0, colorShadow: '' },
+      backgroundImage: {
         type: '',
         angle: '',
         color: '',
@@ -23,47 +24,38 @@ class Playground extends React.Component {
     };
   }
   componentDidMount() {
-    var shapes = this._getAllShapes();
+    const shapes = this._retrieveStoredShapes();
     this.setState({thumbnails: shapes});
   }
-  _handleUserInput(property, value) {
-    let style, propertyName;
-    const shadowValues = ["x","y","blur","spread", "colorShadow"];
-    const gradientValues = ["type", "angle", "color", "position"];
-
-    if (gradientValues.includes(property) || shadowValues.includes(property)) {
-      let concatable = [];
-      style = gradientValues.includes(property) ? this.state.gradient : this.state.bShadow;
-      propertyName = gradientValues.includes(property) ? 'backgroundImage' : 'boxShadow';
-      style[property] = interpolate(property, value);
-
-      for (let p in style) {
-        concatable.push(style[p]);
-      }
-
-      let newstyle = this.state.baseShape;
-      newstyle[propertyName] = concatable
-                                .filter((v) => v !== '')
-                                .join(' ')
-                                .replace(/\(\s(.*$)/, '($1)');
-      this.setState(newstyle);
-    } else {
-      style = this.state.baseShape;
-      style[property] = interpolate(property, value);
-    }
-    this.setState(style);
+  _applyStyle(newstyle) {
+    const newState = Update(this.state, {
+      currentShape: {$set: newstyle}
+    });
+    this.setState(newState);
   }
-  _getAllShapes() {
-    var shapes = localStorage.getItem('shapes');
+  _handleComplexInput(key, property, value) {
+    const propToUpdate = this.state[property];
+    const shape = this.state.currentShape;
+    propToUpdate[key] = interpolate(key, value);
+    shape[property] = concat(propToUpdate);
+    this._applyStyle(shape);
+  }
+  _handleBasicInput(property, value) {
+    const shape = this.state.currentShape;
+    shape[property] = interpolate(property, value);
+    this._applyStyle(shape);
+  }
+  _retrieveStoredShapes() {
+    const shapes = localStorage.getItem('shapes');
     if (shapes) {
       return JSON.parse(shapes);
     }
     return [];
   }
   _saveShape() {
-    var shapes = this._getAllShapes();
-    var style = this.state.baseShape;
-    shapes.push(style);
+    const shapes = this._retrieveStoredShapes();
+    const shape = this.state.currentShape;
+    shapes.push(shape);
     localStorage.setItem('shapes', JSON.stringify(shapes));
     this._displayShapes();
     return true;
@@ -74,23 +66,41 @@ class Playground extends React.Component {
     this._displayShapes();
   }
   _displayShapes() {
-    var shapes = this._getAllShapes();
+    const shapes = this._retrieveStoredShapes();
     this.setState({thumbnails: shapes});
   }
   render() {
-    const shape = this.state.baseShape;
+    const shape = this.state.currentShape;
 
     return (
       <div className="playground">
-        <ControlPanel defaultValue={shape} onUserInput={(property) => this._handleUserInput.bind(this, property)} />
+        <ControlPanel
+          defaultValue={shape}
+          handleBasicInput={(property) => this._handleBasicInput.bind(this, property)}
+          handleComplexInput={(key, property) => this._handleComplexInput.bind(this, key, property)}
+        />
         <section className="shape">
           <button onClick={this._saveShape.bind(this)}>Save me!</button>
-          <Shape shapeStyle={this.state.baseShape} />
+          <Shape shapeStyle={this.state.currentShape} />
         </section>
-        <Sidebar snippet={shape} thumbnails={this.state.thumbnails} onClear={this._clearShapes.bind(this)} />
+        <Sidebar
+          snippet={shape}
+          thumbnails={this.state.thumbnails}
+          onClear={this._clearShapes.bind(this)}
+        />
       </div>
     );
   }
+}
+
+const concat = function(properties) {
+  const concatable = [];
+  for (let single in properties) {
+      concatable.push(properties[single]);
+    }
+  return concatable.filter((v) => v !== '')
+                   .join(' ')
+                   .replace(/\(\s(.*$)/, '($1)');
 }
 
 const interpolate = function (property, value) {
