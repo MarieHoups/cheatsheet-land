@@ -134,7 +134,14 @@ input[type=range]::-ms-tooltip {
         flex-basis: 40%;
     -webkit-box-flex: 1;
         -ms-flex-positive: 1;
-            flex-grow: 1; }
+            flex-grow: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column; }
     @media screen and (max-width: 620px) {
       .playground section:nth-of-type(2) {
         -ms-flex-preferred-size: 100%;
@@ -147,6 +154,22 @@ input[type=range]::-ms-tooltip {
     -webkit-box-flex: 1;
         -ms-flex: 1 1 30%;
             flex: 1 1 30%; }
+
+button {
+  background: transparent;
+  border-radius: 5%;
+  color: #5e5953;
+  cursor: pointer;
+  font-weight: 800;
+  padding: 1em;
+  -webkit-transition: .3s;
+  transition: .3s; }
+
+.grid {
+  background: -webkit-repeating-linear-gradient(right, transparent 0, transparent 0.9em, #ddd 1em), -webkit-repeating-linear-gradient(transparent 0, transparent 0.9em, #ddd 1em), -webkit-repeating-linear-gradient(right, transparent 0, transparent 9.9em, #aaa 10em), -webkit-repeating-linear-gradient(transparent 0, transparent 9.9em, #aaa 10em);
+  background: repeating-linear-gradient(to left, transparent 0, transparent 0.9em, #ddd 1em), repeating-linear-gradient(transparent 0, transparent 0.9em, #ddd 1em), repeating-linear-gradient(to left, transparent 0, transparent 9.9em, #aaa 10em), repeating-linear-gradient(transparent 0, transparent 9.9em, #aaa 10em); }
+  .grid .btn-grid {
+    color: #c1104a; }
 
 section {
   padding: 1em; }
@@ -164,7 +187,7 @@ hr {
       flex-wrap: wrap;
   position: relative; }
 
-.shape div {
+.react-draggable {
   cursor: move; }
 
 .controls, .code {
@@ -272,14 +295,6 @@ fieldset {
     -webkit-transform: translateY(-1.5em);
             transform: translateY(-1.5em); }
 
-.stops {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start; }
-
 .colorstop {
   width: 20px;
   height: 20px;
@@ -301,31 +316,62 @@ fieldset {
   .has-tooltip:hover:after {
     opacity: 1; }
 
-.shape button {
+.layer-container {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 0.4em -0.1em #ae96cf; }
+
+.layer-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .layer-row button {
+    margin: .5em 1em; }
+
+.thumb {
+  width: 22px;
+  height: 22px;
+  margin: 0 2px 2px;
+  box-shadow: inset 0 0 0 2px #fff; }
+  .thumb.is-active {
+    border: dashed #ec185d 1px;
+    background-clip: padding-box; }
+
+.btn-save, .layer-row button, .btn-clear {
   border: solid 1px #e4dcef;
-  float: right; }
+  font-size: .8em; }
+  .btn-save:hover, .layer-row button:hover, .btn-clear:hover {
+    color: #ec185d;
+    border-color: #5e5953; }
+  .btn-save:focus, .layer-row button:focus, .btn-clear:focus {
+    outline: solid 1px #d7cbe7; }
+
+.btn-save {
+  background: #fff;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin-top: 1em; }
 
 .code div {
   text-align: right; }
 
-div > button {
+.btn-clear {
   border: solid 1px #ae96cf;
   margin-bottom: .5em; }
 
-button {
-  background: transparent;
-  border-radius: 5%;
-  color: #5e5953;
-  font-size: .8em;
-  font-weight: 800;
-  padding: 1em;
-  -webkit-transition: .3s;
-  transition: .3s; }
-  button:hover {
-    color: #ec185d;
-    border-color: #5e5953; }
-  button:focus {
-    outline: solid 1px #d7cbe7; }
+.btn-grid {
+  border: none;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  font-size: 1.25em;
+  margin-top: .5em; }
+  .btn-grid:hover {
+    color: #ec185d; }
+  .btn-grid:focus {
+    outline: dashed 1px #ccc; }
 
 .thumbnails {
   background: #ece7f4;
@@ -343,7 +389,8 @@ button {
   -webkit-transform: scale(0.3);
           transform: scale(0.3);
   -webkit-animation: showMeSlowly 1s forwards;
-          animation: showMeSlowly 1s forwards; }
+          animation: showMeSlowly 1s forwards;
+  margin: 1em; }
 
 @-webkit-keyframes showMeSlowly {
   100% {

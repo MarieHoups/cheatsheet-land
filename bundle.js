@@ -29350,7 +29350,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _reactDom2.default.render(_routes2.default, document.getElementById('container'));
 
-},{"./routes":282,"react":247,"react-dom":51}],266:[function(require,module,exports){
+},{"./routes":283,"react":247,"react-dom":51}],266:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29615,6 +29615,8 @@ var ControlPanel = function ControlPanel(props) {
 
   var borderStyles = ["none", "solid", "double", "dashed", "dotted"];
   var gradientTypes = ["linear", "repeating-linear", "radial"];
+  var selected = props.selected;
+  var input = props.inputValues;
 
   return _react2.default.createElement(
     'section',
@@ -29627,7 +29629,7 @@ var ControlPanel = function ControlPanel(props) {
         min: '0',
         max: '20',
         step: '0.1',
-        defaultValue: props.defaultValue.height,
+        inputValue: input.height,
         onUserInput: props.handleBasicInput("height")
       }),
       _react2.default.createElement(_slider2.default, {
@@ -29635,8 +29637,14 @@ var ControlPanel = function ControlPanel(props) {
         min: '0',
         max: '20',
         step: '0.1',
-        defaultValue: props.defaultValue.width,
+        inputValue: input.width,
         onUserInput: props.handleBasicInput("width")
+      }),
+      _react2.default.createElement('hr', null),
+      _react2.default.createElement(_colorInput2.default, {
+        name: 'background',
+        inputValue: input.background,
+        onUserInput: props.handleBasicInput("background")
       })
     ),
     _react2.default.createElement(
@@ -29647,6 +29655,7 @@ var ControlPanel = function ControlPanel(props) {
         min: '-20',
         max: '30',
         step: '0.1',
+        inputValue: input.boxShadow[selected.boxShadow_id].x,
         onUserInput: props.handleComplexInput("x", "boxShadow")
       }),
       _react2.default.createElement(_slider2.default, {
@@ -29654,6 +29663,7 @@ var ControlPanel = function ControlPanel(props) {
         min: '-20',
         max: '30',
         step: '0.1',
+        inputValue: input.boxShadow[selected.boxShadow_id].y,
         onUserInput: props.handleComplexInput("y", "boxShadow")
       }),
       _react2.default.createElement(_slider2.default, {
@@ -29661,6 +29671,7 @@ var ControlPanel = function ControlPanel(props) {
         min: '0',
         max: '10',
         step: '0.1',
+        inputValue: input.boxShadow[selected.boxShadow_id].blur,
         onUserInput: props.handleComplexInput("blur", "boxShadow")
       }),
       _react2.default.createElement(_slider2.default, {
@@ -29668,7 +29679,14 @@ var ControlPanel = function ControlPanel(props) {
         min: '-20',
         max: '30',
         step: '0.1',
+        inputValue: input.boxShadow[selected.boxShadow_id].spread,
         onUserInput: props.handleComplexInput("spread", "boxShadow")
+      }),
+      _react2.default.createElement('hr', null),
+      _react2.default.createElement(_colorInput2.default, {
+        name: 'color',
+        inputValue: input.boxShadow[selected.boxShadow_id].colorShadow,
+        onUserInput: props.handleComplexInput("colorShadow", "boxShadow")
       })
     ),
     _react2.default.createElement(
@@ -29679,6 +29697,7 @@ var ControlPanel = function ControlPanel(props) {
         min: '0',
         max: '50',
         step: '0.1',
+        inputValue: input.borderTopLeftRadius,
         onUserInput: props.handleBasicInput("borderTopLeftRadius")
       }),
       _react2.default.createElement(_slider2.default, {
@@ -29686,6 +29705,7 @@ var ControlPanel = function ControlPanel(props) {
         min: '0',
         max: '50',
         step: '0.1',
+        inputValue: input.borderTopRightRadius,
         onUserInput: props.handleBasicInput("borderTopRightRadius")
       }),
       _react2.default.createElement(_slider2.default, {
@@ -29693,6 +29713,7 @@ var ControlPanel = function ControlPanel(props) {
         min: '0',
         max: '50',
         step: '0.1',
+        inputValue: input.borderBottomRightRadius,
         onUserInput: props.handleBasicInput("borderBottomRightRadius")
       }),
       _react2.default.createElement(_slider2.default, {
@@ -29700,6 +29721,7 @@ var ControlPanel = function ControlPanel(props) {
         min: '0',
         max: '50',
         step: '0.1',
+        inputValue: input.borderBottomLeftRadius,
         onUserInput: props.handleBasicInput("borderBottomLeftRadius")
       })
     ),
@@ -29711,6 +29733,7 @@ var ControlPanel = function ControlPanel(props) {
         min: '0',
         max: '20',
         step: '0.1',
+        inputValue: input.borderTopWidth,
         onUserInput: props.handleBasicInput("borderTopWidth")
       }),
       _react2.default.createElement(_slider2.default, {
@@ -29718,6 +29741,7 @@ var ControlPanel = function ControlPanel(props) {
         min: '0',
         max: '20',
         step: '0.1',
+        inputValue: input.borderRightWidth,
         onUserInput: props.handleBasicInput("borderRightWidth")
       }),
       _react2.default.createElement(_slider2.default, {
@@ -29725,6 +29749,7 @@ var ControlPanel = function ControlPanel(props) {
         min: '0',
         max: '20',
         step: '0.1',
+        inputValue: input.borderBottomWidth,
         onUserInput: props.handleBasicInput("borderBottomWidth")
       }),
       _react2.default.createElement(_slider2.default, {
@@ -29732,6 +29757,7 @@ var ControlPanel = function ControlPanel(props) {
         min: '0',
         max: '20',
         step: '0.1',
+        inputValue: input.borderLeftWidth,
         onUserInput: props.handleBasicInput("borderLeftWidth")
       }),
       _react2.default.createElement('hr', null),
@@ -29742,22 +29768,9 @@ var ControlPanel = function ControlPanel(props) {
           name: 'border-style',
           onUserInput: props.handleBasicInput("borderStyle")
         });
-      })
-    ),
-    _react2.default.createElement(
-      _fieldset2.default,
-      { name: 'Color' },
-      _react2.default.createElement(_colorInput2.default, {
-        name: 'background',
-        defaultValue: props.defaultValue.background,
-        onUserInput: props.handleBasicInput("background")
       }),
       _react2.default.createElement(_colorInput2.default, {
-        name: 'shadow',
-        onUserInput: props.handleComplexInput("colorShadow", "boxShadow")
-      }),
-      _react2.default.createElement(_colorInput2.default, {
-        name: 'border',
+        name: 'color',
         onUserInput: props.handleBasicInput("borderColor")
       })
     ),
@@ -29769,6 +29782,7 @@ var ControlPanel = function ControlPanel(props) {
         min: '0',
         max: '100',
         step: '0.5',
+        inputValue: input.backgroundImage[selected.backgroundImage_id].position,
         onUserInput: props.handleComplexInput("position", "backgroundImage")
       }),
       _react2.default.createElement('hr', null),
@@ -29782,6 +29796,7 @@ var ControlPanel = function ControlPanel(props) {
       }),
       _react2.default.createElement(_colorInput2.default, {
         name: 'color',
+        inputValue: input.backgroundImage[selected.backgroundImage_id].color,
         onUserInput: props.handleComplexInput("color", "backgroundImage")
       })
     )
@@ -29817,7 +29832,10 @@ var ColorInput = function (_React$Component) {
   function ColorInput() {
     _classCallCheck(this, ColorInput);
 
-    return _possibleConstructorReturn(this, (ColorInput.__proto__ || Object.getPrototypeOf(ColorInput)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (ColorInput.__proto__ || Object.getPrototypeOf(ColorInput)).call(this));
+
+    _this._handleChange = _this._handleChange.bind(_this);
+    return _this;
   }
 
   _createClass(ColorInput, [{
@@ -29836,11 +29854,11 @@ var ColorInput = function (_React$Component) {
         this.props.name,
         _react2.default.createElement("input", {
           type: "text",
-          defaultValue: this.props.defaultValue,
+          value: this.props.inputValue,
           ref: function ref(input) {
             return _this2.colorInput = input;
           },
-          onChange: this._handleChange.bind(this)
+          onChange: this._handleChange
         })
       );
     }
@@ -29848,10 +29866,6 @@ var ColorInput = function (_React$Component) {
 
   return ColorInput;
 }(_react2.default.Component);
-
-ColorInput.defaultProps = {
-  defaultValue: ""
-};
 
 exports.default = ColorInput;
 
@@ -29916,7 +29930,10 @@ var Radio = function (_React$Component) {
   function Radio() {
     _classCallCheck(this, Radio);
 
-    return _possibleConstructorReturn(this, (Radio.__proto__ || Object.getPrototypeOf(Radio)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Radio.__proto__ || Object.getPrototypeOf(Radio)).call(this));
+
+    _this._handleChange = _this._handleChange.bind(_this);
+    return _this;
   }
 
   _createClass(Radio, [{
@@ -29938,7 +29955,7 @@ var Radio = function (_React$Component) {
           ref: function ref(input) {
             return _this2.radioInput = input;
           },
-          onChange: this._handleChange.bind(this),
+          onChange: this._handleChange,
           value: this.props.value
         }),
         this.props.value,
@@ -29982,9 +29999,6 @@ var Slider = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Slider.__proto__ || Object.getPrototypeOf(Slider)).call(this));
 
     _this._handleChange = _this._handleChange.bind(_this);
-    _this.state = {
-      value: ""
-    };
     return _this;
   }
 
@@ -29992,7 +30006,6 @@ var Slider = function (_React$Component) {
     key: "_handleChange",
     value: function _handleChange() {
       this.props.onUserInput(this.rangeInput.value);
-      this.setState({ value: this.rangeInput.value });
     }
   }, {
     key: "render",
@@ -30006,7 +30019,7 @@ var Slider = function (_React$Component) {
         this.props.name,
         _react2.default.createElement("input", {
           type: "range",
-          defaultValue: this.props.defaultValue,
+          value: this.props.inputValue,
           min: this.props.min,
           max: this.props.max,
           step: this.props.step,
@@ -30023,13 +30036,63 @@ var Slider = function (_React$Component) {
   return Slider;
 }(_react2.default.Component);
 
-Slider.defaultProps = {
-  defaultValue: 0
-};
-
 exports.default = Slider;
 
 },{"react":247}],275:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Layers = function Layers(props) {
+  return _react2.default.createElement(
+    "div",
+    { className: "layer-container" },
+    _react2.default.createElement(
+      "div",
+      { className: "layer-row" },
+      _react2.default.createElement(
+        "button",
+        { onClick: props.onAddGradient },
+        "Add gradient"
+      ),
+      props.backgroundImage.map(function (s, i) {
+        return _react2.default.createElement("div", {
+          onClick: props.onSelect('backgroundImage', i),
+          className: props.selection.backgroundImage_id === i ? 'thumb is-active' : 'thumb',
+          style: { backgroundImage: s.type + "-gradient(" + s.color + ")" },
+          key: i });
+      })
+    ),
+    _react2.default.createElement(
+      "div",
+      { className: "layer-row" },
+      _react2.default.createElement(
+        "button",
+        { onClick: props.onAddBoxShadow },
+        "Add shadow"
+      ),
+      props.boxShadow.map(function (s, i) {
+        return _react2.default.createElement("div", {
+          onClick: props.onSelect('boxShadow', i),
+          className: props.selection.boxShadow_id === i ? 'thumb is-active' : 'thumb',
+          style: { backgroundColor: "" + s.colorShadow },
+          key: i });
+      })
+    )
+  );
+};
+
+exports.default = Layers;
+
+},{"react":247}],276:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30047,23 +30110,24 @@ var _reactDraggable2 = _interopRequireDefault(_reactDraggable);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Shape = function Shape(props) {
+
   return _react2.default.createElement(
     _reactDraggable2.default,
     null,
-    _react2.default.createElement('div', { style: Object.assign({}, props.shapeStyle), selected: props.selected })
+    _react2.default.createElement('div', { style: props.shapeStyle })
   );
 };
 
 exports.default = Shape;
 
-},{"react":247,"react-draggable":52}],276:[function(require,module,exports){
-"use strict";
+},{"react":247,"react-draggable":52}],277:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -30071,56 +30135,32 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Sidebar = function Sidebar(props) {
   var thumbnails = props.thumbnails.map(function (thumbnail, i) {
-    return _react2.default.createElement("div", { className: "storage", style: thumbnail, key: i });
+    return _react2.default.createElement('div', { className: 'storage', style: thumbnail, key: i });
   });
+  var cssSnippet = '.myShape {\n  background: ' + props.snippet.background + ';\n  height: ' + props.snippet.height + ';\n  width: ' + props.snippet.width + ';\n  box-shadow:\n    ' + (props.snippet.boxShadow || '') + ';\n  border-radius: ' + (props.snippet.borderTopLeftRadius || 0) + ' ' + (props.snippet.borderTopRightRadius || 0) + ' ' + (props.snippet.borderBottomLeftRadius || 0) + ' ' + (props.snippet.borderBottomRightRadius || 0) + ';\n  border-style: ' + props.snippet.borderStyle + ';\n  border-width: ' + (props.snippet.borderTopWidth || 0) + ' ' + (props.snippet.borderRightWidth || 0) + ' ' + (props.snippet.borderBottomWidth || 0) + ' ' + (props.snippet.borderLeftWidth || 0) + ';\n  border-color: ' + props.snippet.borderColor + ';\n  background-image:\n    ' + props.snippet.backgroundImage + ';\n}';
   return _react2.default.createElement(
-    "section",
-    { className: "code" },
+    'section',
+    { className: 'code' },
     _react2.default.createElement(
-      "pre",
+      'pre',
       null,
       _react2.default.createElement(
-        "code",
+        'code',
         null,
-        "background: ",
-        props.snippet.background,
-        '\n',
-        "height: ",
-        props.snippet.height,
-        '\n',
-        "width: ",
-        props.snippet.width,
-        '\n',
-        "box-shadow: ",
-        props.snippet.boxShadow,
-        '\n',
-        "border-radius: ",
-        (props.snippet.borderTopLeftRadius || 0) + " " + (props.snippet.borderTopRightRadius || 0) + " " + (props.snippet.borderBottomLeftRadius || 0) + " " + (props.snippet.borderBottomRightRadius || 0),
-        '\n',
-        "border-style: ",
-        props.snippet.borderStyle,
-        '\n',
-        "border-width: ",
-        (props.snippet.borderTopWidth || 0) + " " + (props.snippet.borderRightWidth || 0) + " " + (props.snippet.borderBottomWidth || 0) + " " + (props.snippet.borderLeftWidth || 0),
-        '\n',
-        "border-color: ",
-        props.snippet.borderColor,
-        '\n',
-        "background-image:",
-        props.snippet.backgroundImage
+        cssSnippet
       )
     ),
     _react2.default.createElement(
-      "div",
+      'div',
       null,
       _react2.default.createElement(
-        "button",
-        { onClick: props.onClear },
-        "Clear all"
+        'button',
+        { className: 'btn-clear', onClick: props.onClear },
+        'Clear all'
       ),
       _react2.default.createElement(
-        "aside",
-        { className: "thumbnails" },
+        'aside',
+        { className: 'thumbnails' },
         thumbnails
       )
     )
@@ -30129,12 +30169,14 @@ var Sidebar = function Sidebar(props) {
 
 exports.default = Sidebar;
 
-},{"react":247}],277:[function(require,module,exports){
+},{"react":247}],278:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -30154,11 +30196,17 @@ var _sidebar = require('./panels/sidebar');
 
 var _sidebar2 = _interopRequireDefault(_sidebar);
 
+var _layers = require('./panels/layers');
+
+var _layers2 = _interopRequireDefault(_layers);
+
 var _reactAddonsUpdate = require('react-addons-update');
 
 var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -30175,20 +30223,36 @@ var Playground = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Playground.__proto__ || Object.getPrototypeOf(Playground)).call(this));
 
     _this.state = {
+      grid: true,
+      selection: { boxShadow_id: 0, backgroundImage_id: 0 },
       currentShape: {
         background: '#EC185D',
-        width: '10em',
-        height: '10em'
-      },
-      boxShadow: { x: 0, y: 0, blur: 0, spread: 0, colorShadow: '' },
-      backgroundImage: {
-        type: '',
-        angle: '',
-        color: '',
-        position: ''
+        width: 10,
+        height: 10,
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
+        borderTopWidth: 0,
+        borderBottomWidth: 0,
+        borderRightWidth: 0,
+        borderLeftWidth: 0,
+        borderStyle: 'none',
+        borderColor: 'rgba(255, 255, 255, 0)',
+        boxShadow: [{ x: 0, y: 0, blur: 0, spread: 0, colorShadow: '#000' }],
+        backgroundImage: [{
+          type: 'linear',
+          angle: '',
+          color: 'rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)',
+          position: '100'
+        }]
       },
       thumbnails: []
     };
+
+    _this._saveShape = _this._saveShape.bind(_this);
+    _this._clearShapes = _this._clearShapes.bind(_this);
+    _this._showGrid = _this._showGrid.bind(_this);
     return _this;
   }
 
@@ -30201,25 +30265,41 @@ var Playground = function (_React$Component) {
   }, {
     key: '_applyStyle',
     value: function _applyStyle(newstyle) {
-      var newState = (0, _reactAddonsUpdate2.default)(this.state, {
-        currentShape: { $set: newstyle }
+      var newState = (0, _reactAddonsUpdate2.default)(this.state, { currentShape: { $merge: newstyle }
       });
+      this.setState(newState);
+    }
+  }, {
+    key: '_add',
+    value: function _add(property, obj) {
+      var layers = this.state.currentShape[property].concat(obj);
+      var selected = this.state.selection;
+      selected[property + '_id'] = layers.length - 1;
+      var newState = (0, _reactAddonsUpdate2.default)(this.state, { currentShape: _defineProperty({}, property, { $set: layers }), selection: { $set: selected } });
+      this.setState(newState);
+    }
+  }, {
+    key: '_select',
+    value: function _select(property, index) {
+      var selected = Object.assign({}, this.state.selection);
+      selected[property + '_id'] = index;
+      var newState = (0, _reactAddonsUpdate2.default)(this.state, { selection: { $set: selected } });
       this.setState(newState);
     }
   }, {
     key: '_handleComplexInput',
     value: function _handleComplexInput(key, property, value) {
-      var propToUpdate = this.state[property];
-      var shape = this.state.currentShape;
-      propToUpdate[key] = interpolate(key, value);
-      shape[property] = concat(propToUpdate);
-      this._applyStyle(shape);
+      var shape = Object.assign({}, this.state.currentShape[property][this.state.selection[property + '_id']]);
+      shape[key] = value;
+      /* See https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015 */
+      var newState = (0, _reactAddonsUpdate2.default)(this.state, { currentShape: _defineProperty({}, property, _defineProperty({}, this.state.selection[property + '_id'], { $set: shape })) });
+      this.setState(newState);
     }
   }, {
     key: '_handleBasicInput',
     value: function _handleBasicInput(property, value) {
-      var shape = this.state.currentShape;
-      shape[property] = interpolate(property, value);
+      var shape = Object.assign({}, this.state.currentShape);
+      shape[property] = value;
       this._applyStyle(shape);
     }
   }, {
@@ -30235,8 +30315,7 @@ var Playground = function (_React$Component) {
     key: '_saveShape',
     value: function _saveShape() {
       var shapes = this._retrieveStoredShapes();
-      var shape = this.state.currentShape;
-      shapes.push(shape);
+      shapes.push(computeStyle(this.state.currentShape));
       localStorage.setItem('shapes', JSON.stringify(shapes));
       this._displayShapes();
       return true;
@@ -30255,17 +30334,24 @@ var Playground = function (_React$Component) {
       this.setState({ thumbnails: shapes });
     }
   }, {
+    key: '_showGrid',
+    value: function _showGrid() {
+      this.setState({ grid: this.state.grid === true ? false : true });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
       var shape = this.state.currentShape;
+      var formatedStyle = computeStyle(shape);
 
       return _react2.default.createElement(
         'div',
         { className: 'playground' },
         _react2.default.createElement(_controlPanel2.default, {
-          defaultValue: shape,
+          inputValues: shape,
+          selected: this.state.selection,
           handleBasicInput: function handleBasicInput(property) {
             return _this2._handleBasicInput.bind(_this2, property);
           },
@@ -30275,18 +30361,33 @@ var Playground = function (_React$Component) {
         }),
         _react2.default.createElement(
           'section',
-          { className: 'shape' },
+          { className: this.state.grid ? "shape grid" : "shape" },
+          _react2.default.createElement(_layers2.default, {
+            backgroundImage: shape.backgroundImage,
+            boxShadow: shape.boxShadow,
+            selection: this.state.selection,
+            onAddBoxShadow: this._add.bind(this, "boxShadow", { x: 0, y: 0, blur: 0, spread: 0, colorShadow: '#000' }),
+            onAddGradient: this._add.bind(this, "backgroundImage", { type: '', angle: '', color: '', position: '' }),
+            onSelect: function onSelect(property, index) {
+              return _this2._select.bind(_this2, property, index);
+            }
+          }),
           _react2.default.createElement(
             'button',
-            { onClick: this._saveShape.bind(this) },
+            { className: 'btn-save', onClick: this._saveShape },
             'Save me!'
           ),
-          _react2.default.createElement(_shape2.default, { shapeStyle: this.state.currentShape })
+          _react2.default.createElement(
+            'button',
+            { className: 'btn-grid', onClick: this._showGrid },
+            '#'
+          ),
+          _react2.default.createElement(_shape2.default, { shapeStyle: formatedStyle })
         ),
         _react2.default.createElement(_sidebar2.default, {
-          snippet: shape,
+          snippet: formatedStyle,
           thumbnails: this.state.thumbnails,
-          onClear: this._clearShapes.bind(this)
+          onClear: this._clearShapes
         })
       );
     }
@@ -30295,38 +30396,49 @@ var Playground = function (_React$Component) {
   return Playground;
 }(_react2.default.Component);
 
-var concat = function concat(properties) {
-  var concatable = [];
-  for (var single in properties) {
-    concatable.push(properties[single]);
-  }
-  return concatable.filter(function (v) {
-    return v !== '';
-  }).join(' ').replace(/\(\s(.*$)/, '($1)');
-};
+exports.default = Playground;
 
-var interpolate = function interpolate(property, value) {
+
+var formatProperty = function formatProperty(property, value) {
   switch (property) {
+    case 'boxShadow':
+      return value.x + 'em ' + value.y + 'em ' + value.blur + 'em ' + value.spread + 'em ' + value.colorShadow;
+    case 'backgroundImage':
+      return value.type + '-gradient(' + value.color + ' ' + (value.position || 100) + '%)';
     case 'color':
-    case 'colorShadow':
     case 'background':
     case 'borderStyle':
     case 'borderColor':
       return value;
-    case 'type':
-      return value + '-gradient(';
-    case 'angle':
-      return value + 'deg,';
-    case 'position':
-      return value + '%';
     default:
       return value + 'em';
   }
 };
 
-exports.default = Playground;
+var computeStyle = function computeStyle(stateObj) {
+  var style = Object.assign({}, stateObj);
 
-},{"./panels/controlPanel":270,"./panels/shape":275,"./panels/sidebar":276,"react":247,"react-addons-update":50}],278:[function(require,module,exports){
+  var _loop = function _loop(obj) {
+    if (_typeof(style[obj]) === 'object') {
+      (function () {
+        var concatable = [];
+        style[obj].map(function (layer) {
+          concatable.push(formatProperty(obj, layer));
+        });
+        style[obj] = concatable.join(',\n  ');
+      })();
+    } else {
+      style[obj] = formatProperty(obj, style[obj]);
+    }
+  };
+
+  for (var obj in style) {
+    _loop(obj);
+  }
+  return style;
+};
+
+},{"./panels/controlPanel":270,"./panels/layers":275,"./panels/shape":276,"./panels/sidebar":277,"react":247,"react-addons-update":50}],279:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30395,7 +30507,7 @@ var TableContainer = function (_React$Component) {
 
 exports.default = TableContainer;
 
-},{"./ColorTable/ColorTable":267,"./colorTable/SearchInput":268,"react":247}],279:[function(require,module,exports){
+},{"./ColorTable/ColorTable":267,"./colorTable/SearchInput":268,"react":247}],280:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30424,7 +30536,7 @@ var connector = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps);
 
 exports.default = connector;
 
-},{"react-redux":55}],280:[function(require,module,exports){
+},{"react-redux":55}],281:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30503,7 +30615,7 @@ var Layout = function (_React$Component) {
 
 exports.default = Layout;
 
-},{"./components/footer":269,"react":247,"react-router":94}],281:[function(require,module,exports){
+},{"./components/footer":269,"react":247,"react-router":94}],282:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30532,7 +30644,7 @@ var setSearchTermReducer = function setSearchTermReducer(state, action) {
 
 exports.default = rootReducer;
 
-},{}],282:[function(require,module,exports){
+},{}],283:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30587,7 +30699,7 @@ var routes = _react2.default.createElement(
 
 exports.default = routes;
 
-},{"./components/playground":277,"./components/tableContainer":278,"./connector":279,"./layout":280,"./store":283,"react":247,"react-redux":55,"react-router":94}],283:[function(require,module,exports){
+},{"./components/playground":278,"./components/tableContainer":279,"./connector":280,"./layout":281,"./store":284,"react":247,"react-redux":55,"react-router":94}],284:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30614,5 +30726,5 @@ var store = (0, _redux.createStore)(_reducers2.default, defaultState, (0, _redux
 
 exports.default = store;
 
-},{"./reducers":281,"redux":253}]},{},[265])
+},{"./reducers":282,"redux":253}]},{},[265])
 //# sourceMappingURL=bundle.js.map
