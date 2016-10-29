@@ -23,6 +23,27 @@
   }
 }
 
+button {
+  background:transparent;
+  border-radius: 5%;
+  color: #5e5953;
+  cursor: pointer;
+  font-weight: 800;
+  padding: 1em;
+  transition: .3s;
+}
+
+.grid {
+background:
+  repeating-linear-gradient(to left, transparent 0, transparent .9em, #ddd 1em),
+  repeating-linear-gradient(transparent 0, transparent .9em, #ddd 1em),
+  repeating-linear-gradient(to left, transparent 0, transparent 9.9em, #aaa 10em),
+  repeating-linear-gradient(transparent 0, transparent 9.9em, #aaa 10em);
+  .btn-grid {
+    color: darken($color-main, 10%);;
+  }
+}
+
 section {
   padding: 1em;
 }
@@ -203,39 +224,43 @@ fieldset {
   }
 }
 
-.shape button {
+.btn-save, .layer-row button, .btn-clear {
   border: solid 1px $color-light;
-  &.btn-save {
-    align-self: flex-end;
-    margin-top: 1em;
-    background: #fff;
-  }
-}
-
-.code div {
-  text-align: right;
-}
-
-div > button {
-  border: solid 1px darken($color-light, 20%);
-  margin-bottom: .5em;
-}
-
-button {
-  background:transparent;
-  border-radius: 5%;
-  color: #5e5953;
-  cursor: pointer;
   font-size: .8em;
-  font-weight: 800;
-  padding: 1em;
-  transition: .3s;
   &:hover {
     color: $color-main;
     border-color: #5e5953;
   }
   &:focus {
     outline: solid 1px darken($color-light, 5%);
+  }
+}
+
+.btn-save {
+  background: #fff;
+  align-self: flex-end;
+  margin-top: 1em;
+}
+
+.code div {
+  text-align: right;
+}
+
+.btn-clear {
+  border: solid 1px darken($color-light, 20%);
+  margin-bottom: .5em;
+}
+
+.btn-grid {
+  border: none;
+  align-self: flex-end;
+  font-size: 1.25em;
+  margin-top: .5em;
+  &:hover {
+    color: $color-main;
+  }
+  &:focus {
+    outline: dashed 1px #ccc;
   }
 }
 

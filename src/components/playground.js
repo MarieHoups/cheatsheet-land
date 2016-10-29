@@ -9,6 +9,7 @@ class Playground extends React.Component {
   constructor() {
     super();
     this.state = {
+      grid: true,
       selection: { boxShadow_id:0, backgroundImage_id: 0 },
       currentShape: {
         background: '#EC185D',
@@ -37,6 +38,7 @@ class Playground extends React.Component {
 
     this._saveShape = this._saveShape.bind(this);
     this._clearShapes = this._clearShapes.bind(this);
+    this._showGrid = this._showGrid.bind(this);
   }
 
   componentDidMount() {
@@ -97,6 +99,9 @@ class Playground extends React.Component {
     const shapes = this._retrieveStoredShapes();
     this.setState({thumbnails: shapes});
   }
+  _showGrid() {
+    this.setState({grid: this.state.grid === true ? false : true})
+  }
   render() {
     const shape = this.state.currentShape;
     const formatedStyle = computeStyle(shape);
@@ -109,7 +114,7 @@ class Playground extends React.Component {
           handleBasicInput={(property) => this._handleBasicInput.bind(this, property)}
           handleComplexInput={(key, property) => this._handleComplexInput.bind(this, key, property)}
         />
-        <section className="shape">
+        <section className={this.state.grid ? "shape grid" : "shape"}>
           <Layers
             backgroundImage={shape.backgroundImage}
             boxShadow={shape.boxShadow}
@@ -119,6 +124,7 @@ class Playground extends React.Component {
             onSelect={(property, index) => this._select.bind(this, property, index)}
           />
           <button className="btn-save" onClick={this._saveShape}>Save me!</button>
+          <button className="btn-grid" onClick={this._showGrid}>#</button>
           <Shape shapeStyle={formatedStyle} />
         </section>
         <Sidebar

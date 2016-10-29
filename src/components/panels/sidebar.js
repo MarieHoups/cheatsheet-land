@@ -25,7 +25,7 @@ const Sidebar = (props) => {
         </code>
       </pre>
       <div>
-        <button onClick={props.onClear}>Clear all</button>
+        <button className="btn-clear" onClick={props.onClear}>Clear all</button>
         <aside className="thumbnails">
           { thumbnails }
         </aside>
