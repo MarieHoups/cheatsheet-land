@@ -11,7 +11,6 @@ class TableContainer extends React.Component{
   _handleUserInput(filterText) {
     this.props.setSearchTerm(filterText)
   }
-
   render() {
     return (
       <main>

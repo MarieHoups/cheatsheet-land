@@ -8,6 +8,8 @@ const ControlPanel = (props) => {
 
     const borderStyles = ["none", "solid", "double", "dashed", "dotted"];
     const gradientTypes = ["linear", "repeating-linear", "radial"];
+    const selected = props.selected;
+    const input = props.inputValues;
 
     return (
       <section className="controls">
@@ -17,7 +19,7 @@ const ControlPanel = (props) => {
             min="0"
             max="20"
             step="0.1"
-            defaultValue={props.defaultValue.height}
+            inputValue={input.height}
             onUserInput={props.handleBasicInput("height")}
           />
           <Slider
@@ -25,8 +27,14 @@ const ControlPanel = (props) => {
             min="0"
             max="20"
             step="0.1"
-            defaultValue={props.defaultValue.width}
+            inputValue={input.width}
             onUserInput={props.handleBasicInput("width")}
+          />
+          <hr />
+          <ColorInput
+            name="background"
+            inputValue={input.background}
+            onUserInput={props.handleBasicInput("background")}
           />
         </Fieldset>
         <Fieldset name="Box-shadow">
@@ -35,6 +43,7 @@ const ControlPanel = (props) => {
             min="-20"
             max="30"
             step="0.1"
+            inputValue={input.boxShadow[selected.boxShadow_id].x}
             onUserInput={props.handleComplexInput("x", "boxShadow")}
           />
           <Slider
@@ -42,6 +51,7 @@ const ControlPanel = (props) => {
             min="-20"
             max="30"
             step="0.1"
+            inputValue={input.boxShadow[selected.boxShadow_id].y}
             onUserInput={props.handleComplexInput("y", "boxShadow")}
           />
           <Slider
@@ -49,6 +59,7 @@ const ControlPanel = (props) => {
             min="0"
             max="10"
             step="0.1"
+            inputValue={input.boxShadow[selected.boxShadow_id].blur}
             onUserInput={props.handleComplexInput("blur", "boxShadow")}
           />
           <Slider
@@ -56,7 +67,14 @@ const ControlPanel = (props) => {
             min="-20"
             max="30"
             step="0.1"
+            inputValue={input.boxShadow[selected.boxShadow_id].spread}
             onUserInput={props.handleComplexInput("spread", "boxShadow")}
+          />
+          <hr />
+          <ColorInput
+            name="color"
+            inputValue={input.boxShadow[selected.boxShadow_id].colorShadow}
+            onUserInput={props.handleComplexInput("colorShadow", "boxShadow")}
           />
         </Fieldset>
         <Fieldset name="Border-radius">
@@ -65,6 +83,7 @@ const ControlPanel = (props) => {
             min="0"
             max="50"
             step="0.1"
+            inputValue={input.borderTopLeftRadius}
             onUserInput={props.handleBasicInput("borderTopLeftRadius")}
           />
           <Slider
@@ -72,6 +91,7 @@ const ControlPanel = (props) => {
             min="0"
             max="50"
             step="0.1"
+            inputValue={input.borderTopRightRadius}
             onUserInput={props.handleBasicInput("borderTopRightRadius")}
           />
           <Slider
@@ -79,6 +99,7 @@ const ControlPanel = (props) => {
             min="0"
             max="50"
             step="0.1"
+            inputValue={input.borderBottomRightRadius}
             onUserInput={props.handleBasicInput("borderBottomRightRadius")}
           />
           <Slider
@@ -86,6 +107,7 @@ const ControlPanel = (props) => {
             min="0"
             max="50"
             step="0.1"
+            inputValue={input.borderBottomLeftRadius}
             onUserInput={props.handleBasicInput("borderBottomLeftRadius")}
           />
         </Fieldset>
@@ -95,6 +117,7 @@ const ControlPanel = (props) => {
             min="0"
             max="20"
             step="0.1"
+            inputValue={input.borderTopWidth}
             onUserInput={props.handleBasicInput("borderTopWidth")}
           />
           <Slider
@@ -102,6 +125,7 @@ const ControlPanel = (props) => {
             min="0"
             max="20"
             step="0.1"
+            inputValue={input.borderRightWidth}
             onUserInput={props.handleBasicInput("borderRightWidth")}
           />
           <Slider
@@ -109,6 +133,7 @@ const ControlPanel = (props) => {
             min="0"
             max="20"
             step="0.1"
+            inputValue={input.borderBottomWidth}
             onUserInput={props.handleBasicInput("borderBottomWidth")}
           />
           <Slider
@@ -116,6 +141,7 @@ const ControlPanel = (props) => {
             min="0"
             max="20"
             step="0.1"
+            inputValue={input.borderLeftWidth}
             onUserInput={props.handleBasicInput("borderLeftWidth")}
           />
           <hr />
@@ -127,19 +153,8 @@ const ControlPanel = (props) => {
             onUserInput={props.handleBasicInput("borderStyle")}
           />
           ))}
-        </Fieldset>
-        <Fieldset name="Color">
           <ColorInput
-            name="background"
-            defaultValue={props.defaultValue.background}
-            onUserInput={props.handleBasicInput("background")}
-          />
-          <ColorInput
-            name="shadow"
-            onUserInput={props.handleComplexInput("colorShadow", "boxShadow")}
-          />
-          <ColorInput
-            name="border"
+            name="color"
             onUserInput={props.handleBasicInput("borderColor")}
           />
         </Fieldset>
@@ -149,6 +164,7 @@ const ControlPanel = (props) => {
             min="0"
             max="100"
             step="0.5"
+            inputValue={input.backgroundImage[selected.backgroundImage_id].position}
             onUserInput={props.handleComplexInput("position", "backgroundImage")}
           />
           <hr/>
@@ -162,6 +178,7 @@ const ControlPanel = (props) => {
           ))}
           <ColorInput
             name="color"
+            inputValue={input.backgroundImage[selected.backgroundImage_id].color}
             onUserInput={props.handleComplexInput("color", "backgroundImage")}
           />
         </Fieldset>

@@ -4,22 +4,17 @@ class Slider extends React.Component{
   constructor() {
     super();
     this._handleChange = this._handleChange.bind(this);
-    this.state = {
-      value: ""
-    }
   }
 
   _handleChange() {
     this.props.onUserInput(this.rangeInput.value);
-    this.setState({value: this.rangeInput.value})
   }
-
   render() {
     return (
       <label className="lbl-range"> {this.props.name}
         <input
           type="range"
-          defaultValue={this.props.defaultValue}
+          value={this.props.inputValue}
           min={this.props.min}
           max={this.props.max}
           step={this.props.step}
@@ -31,9 +26,5 @@ class Slider extends React.Component{
     );
   }
 }
-
-Slider.defaultProps = {
-  defaultValue: 0
-};
 
 export default Slider;
